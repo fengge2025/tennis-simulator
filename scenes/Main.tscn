@@ -48,7 +48,7 @@ position = Vector2(326, 240)
 scale = Vector2(2.14063, 2.61719)
 texture = ExtResource("6_81qil")
 
-[node name="btn_reset" type="Button" parent="."]
+[node name="ResetButton" type="Button" parent="."]
 offset_left = 71.0
 offset_top = 227.0
 offset_right = 122.0
@@ -82,4 +82,4 @@ offset_top = 48.0
 offset_right = 622.0
 offset_bottom = 181.0
 
-[connection signal="pressed" from="btn_reset" to="." method="_on_btn_reset_pressed"]
+[connection signal="pressed" from="ResetButton" to="." method="_on_btn_reset_pressed"]
