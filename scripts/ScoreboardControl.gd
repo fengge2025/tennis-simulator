@@ -15,7 +15,9 @@ func update_scores(game_score: MatchBundles.GameScore) -> void:
 	second_player_score_lbl.text = _format_string("Freddy", game_score, 1)
 
 
-func _format_string(player_name: String, game_score: MatchBundles.GameScore, player_idx: int) -> String:
+func _format_string(
+	player_name: String, game_score: MatchBundles.GameScore, player_idx: int
+) -> String:
 	return (
 		"%s: %s - %s - %s"
 		% [

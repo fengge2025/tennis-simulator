@@ -12,22 +12,28 @@ var turn_state = TurnState.FIRST_PLAYER
 
 var target_positions = [Vector2(400, 100), Vector2(200, 400)]
 
+
 func next_turn():
 	await player_action()
 	scoreboard_ctl.update_scores(tennis_match.game_score)
-	
+
 	next_turn()
-		
+
+
 func player_action():
 	await move_sprite(target_positions[turn_state])
 	turn_state ^= 1
 	tennis_match.next_hit(turn_state)
 
+
 func _ready():
 	tennis_ball_spr.play("fly")
 	next_turn()
 
+
 func move_sprite(target_position: Vector2):
-	var tween = create_tween()  # Create a Tween instance
-	tween.tween_property(tennis_ball_spr, "position", target_position, 1.0).set_trans(Tween.TRANS_QUAD)
-	await tween.finished  # Wait until the movement is complete
+	var tween = create_tween()
+	tween.tween_property(tennis_ball_spr, "position", target_position, 1.0).set_trans(
+		Tween.TRANS_QUAD
+	)
+	await tween.finished
