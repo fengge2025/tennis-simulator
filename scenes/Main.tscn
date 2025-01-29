@@ -76,4 +76,10 @@ offset_top = 97.0
 offset_right = 102.0
 offset_bottom = 120.0
 
+[node name="OutcomeRichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 456.0
+offset_top = 48.0
+offset_right = 622.0
+offset_bottom = 181.0
+
 [connection signal="pressed" from="btn_reset" to="." method="_on_btn_reset_pressed"]
