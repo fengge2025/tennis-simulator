@@ -23,7 +23,10 @@ func next_turn():
 func player_action():
 	await move_sprite(target_positions[turn_state])
 	turn_state ^= 1
-	tennis_match.next_hit(turn_state)
+	var start_serve = tennis_match.next_hit(turn_state)
+	if start_serve:
+		await move_sprite(Vector2(380, 110))
+		await get_tree().create_timer(0.5).timeout
 
 
 func _ready():

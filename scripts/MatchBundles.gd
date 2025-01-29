@@ -81,18 +81,20 @@ class TennisMatch:
 		outcome_logs = []
 		game_score = GameScore.new()
 
-	func next_hit(player_idx: TurnState) -> void:
+	func next_hit(player_idx: int) -> bool:
 		var outcome = players[player_idx].hit_ball()
+		var start_serve = false
 		if outcome == HitOutcome.MISS:
 			print(players[player_idx].name + " missed")
 			game_score.current_game_score[player_idx ^ 1] += 1
+			start_serve = true
 		elif outcome == HitOutcome.CONT:
 			print(players[player_idx].name + " hit")
 
-		_update_game_score(player_idx)
-		_update_game_score(player_idx ^ 1)
+		_update_game_score(player_idx) or _update_game_score(player_idx ^ 1)
+		return start_serve
 
-	func _update_game_score(player_idx: int) -> void:
+	func _update_game_score(player_idx: int) -> bool:
 		var game_score_diff = (
 			game_score.current_game_score[player_idx]
 			- game_score.current_game_score[player_idx ^ 1]
@@ -105,15 +107,18 @@ class TennisMatch:
 			game_score.current_set_score[player_idx] += 1
 			game_score.current_game_score = [0, 0]
 			print("reset game")
+			return true
 
 		if game_score.current_set_score[player_idx] >= 6 and set_score_diff > 1:
 			game_score.current_match_score[player_idx] += 1
 			game_score.current_set_score = [0, 0]
 			print("reset set")
+			return true
 
 		if game_score.current_set_score[player_idx] == 7:
 			game_score.current_match_score[player_idx] += 1
 			game_score.current_set_score = [0, 0]
 			print("reset set")
+			return true
 
-		print(game_score.current_game_score)
+		return false
