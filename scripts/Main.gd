@@ -10,26 +10,17 @@ var tennis_match = MatchBundles.TennisMatch.new()
 enum TurnState { FIRST_PLAYER, SECOND_PLAYER }
 var turn_state = TurnState.FIRST_PLAYER
 
+var target_positions = [Vector2(400, 100), Vector2(200, 400)]
+
 func next_turn():
-	if turn_state == TurnState.FIRST_PLAYER:
-		await fisrt_player_action()
-	elif turn_state == TurnState.SECOND_PLAYER:
-		await second_player_action()
-	
-	scoreboard_ctl.update_scores(tennis_match.game_score)	
+	await player_action()
+	scoreboard_ctl.update_scores(tennis_match.game_score)
 	
 	next_turn()
 		
-func fisrt_player_action():
+func player_action():
+	await move_sprite(target_positions[turn_state])
 	turn_state ^= 1
-	await move_sprite(Vector2(400, 100))
-	#tennis_match.first_player.hit_ball()
-	tennis_match.next_hit(turn_state)
-
-func second_player_action():
-	turn_state ^= 1
-	await move_sprite(Vector2(200, 400))
-	#tennis_match.second_player.hit_ball()
 	tennis_match.next_hit(turn_state)
 
 func _ready():
