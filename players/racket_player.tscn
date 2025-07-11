@@ -1,0 +1,109 @@
+[gd_scene load_steps=13 format=3 uid="uid://b4kfresn3pb3"]
+
+[ext_resource type="Script" path="res://players/scripts/racket_player.gd" id="1_bslee"]
+[ext_resource type="Texture2D" uid="uid://7u4my3lymj5y" path="res://players/assets/racket.png" id="2_xpo8p"]
+[ext_resource type="Script" path="res://players/scripts/states/player_state_machine.gd" id="3_suwrh"]
+[ext_resource type="Script" path="res://players/scripts/states/player_state_idle.gd" id="4_rad8n"]
+[ext_resource type="Script" path="res://players/scripts/states/player_state_hit.gd" id="5_vae65"]
+[ext_resource type="Script" path="res://players/scripts/states/player_state_move.gd" id="6_6txx4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q4njw"]
+radius = 80.0
+
+[sub_resource type="Animation" id="Animation_22ud0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wl3ku"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 0]
+}
+
+[sub_resource type="Animation" id="Animation_8dm6u"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_a4sol"]
+resource_name = "move"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2njad"]
+_data = {
+"RESET": SubResource("Animation_22ud0"),
+"hit": SubResource("Animation_wl3ku"),
+"idle": SubResource("Animation_8dm6u"),
+"move": SubResource("Animation_a4sol")
+}
+
+[node name="RacketPlayerPlayer" type="CharacterBody2D"]
+script = ExtResource("1_bslee")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_q4njw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xpo8p")
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2njad")
+}
+
+[node name="PlayerStateMachine" type="Node" parent="."]
+script = ExtResource("3_suwrh")
+
+[node name="PlayerStateIdle" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("4_rad8n")
+
+[node name="PlayerStateHit" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("5_vae65")
+
+[node name="PlayerStateMove" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("6_6txx4")

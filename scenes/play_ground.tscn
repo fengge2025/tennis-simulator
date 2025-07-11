@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqu48bxcopj1e"]
+
+[ext_resource type="PackedScene" uid="uid://b4kfresn3pb3" path="res://players/racket_player.tscn" id="1_78deu"]
+
+[node name="PlayGround" type="Node2D"]
+
+[node name="RacketPlayerPlayer" parent="." instance=ExtResource("1_78deu")]
+position = Vector2(556, 414)
