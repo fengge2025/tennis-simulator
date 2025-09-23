@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://s4q8h48y8l4u"]
+
+[ext_resource type="Script" path="res://models/ball/scripts/ball.gd" id="1_g6rup"]
+[ext_resource type="Texture2D" uid="uid://i8pybsocxmnu" path="res://models/ball/assets/tennis-ball-0001.png" id="2_d3ceu"]
+[ext_resource type="Script" path="res://models/ball/scripts/states/ball_state_machine.gd" id="3_f76yd"]
+
+[sub_resource type="Animation" id="Animation_v84hv"]
+resource_name = "run"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_3lcod"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mlkmb"]
+_data = {
+"RESET": SubResource("Animation_3lcod"),
+"run": SubResource("Animation_v84hv")
+}
+
+[node name="Ball" type="Node2D"]
+script = ExtResource("1_g6rup")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_d3ceu")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mlkmb")
+}
+
+[node name="BallStateMachine" type="Node" parent="."]
+script = ExtResource("3_f76yd")
+
+[node name="BallStateRun" type="Node" parent="BallStateMachine"]
+
+[node name="BallStateIdle" type="Node" parent="BallStateMachine"]
