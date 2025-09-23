@@ -1,5 +1,7 @@
 class_name BallStateRun extends BallState
 
+signal run_finished()
+
 var moving: bool = false
 var speed: float = 200.0
 
@@ -22,6 +24,6 @@ func process(delta: float) -> State:
 		else:
 			ball.position = ball.target_position
 			moving = false
-		return null
 	else:
-		return state_machine.states['idle']
+		run_finished.emit()
+	return null

@@ -2,8 +2,8 @@ class_name Player extends Node2D
 
 @export_enum("home", "away") var home_or_away: String = "home"
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var player_state_machine: PlayerStateMachine = $PlayerStateMachine
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 #var config_territory: Dictionary = {}
 var target_position: Vector2 = Vector2.ZERO
