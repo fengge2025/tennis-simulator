@@ -1,7 +1,7 @@
 extends Node
 
-@onready var player: Player = $Player
 @onready var ball: Ball = $Ball
+@onready var hit_and_run: HitAndRun = $HitAndRun
 
 var config_territory: Dictionary = {
 	"hit_x_min": 100,
@@ -15,8 +15,7 @@ func _ready() -> void:
 	target_position = get_target_position()
 	
 	ball.ball_state_machine.states['run'].run_finished.connect(ball_run_finished)
-	player.player_state_machine.states['run'].run_finished.connect(player_run_finished)
-	player.player_state_machine.states['hit'].hit_finished.connect(player_hit_finished)
+	hit_and_run.hit_finished.connect(hit_and_run_finished)
 	
 	ball.target_position = target_position
 	ball.ball_state_machine.change_to('run')
@@ -32,19 +31,10 @@ func get_target_position() -> Vector2:
 	return rand_vec
 
 
-func ball_run_finished() -> void:
-	player.target_position = target_position
-	player.player_state_machine.change_to('run')
-	
+func ball_run_finished(target_position: Vector2) -> void:
 	ball.ball_state_machine.change_to('idle')
+	hit_and_run.hit_and_run(target_position)
 	
-func player_run_finished() -> void:
-	player.player_state_machine.change_to('hit')
-
-func player_hit_finished(_desire_ball_position: Vector2) -> void:
-	print(_desire_ball_position)
-	target_position = get_target_position()
-	player.player_state_machine.change_to('idle')
-	
-	ball.target_position = target_position
+func hit_and_run_finished(desire_ball_position: Vector2)-> void:
+	ball.target_position = desire_ball_position
 	ball.ball_state_machine.change_to('run')

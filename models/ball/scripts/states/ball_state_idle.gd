@@ -8,5 +8,4 @@ func exit() -> void:
 	pass
 
 func process(delta: float) -> State:
-	print("ball idling")
 	return null
