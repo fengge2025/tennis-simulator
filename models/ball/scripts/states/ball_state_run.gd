@@ -1,9 +1,9 @@
 class_name BallStateRun extends BallState
 
-signal run_finished(destination_position: Vector2)
+signal run_finished(action: Player.ACTION, destination_position: Vector2)
 
 var moving: bool = false
-var speed: float = 200.0
+var speed: float = 100.0
 
 func enter() -> void:
 	print("ball enter run")
@@ -14,8 +14,6 @@ func exit() -> void:
 	moving = false
 
 func process(delta: float) -> State:
-	print(ball.target_position)
-	print(ball.position)
 	if moving:
 		var direction = (ball.target_position - ball.position).normalized()
 		var distance = ball.position.distance_to(ball.target_position)
@@ -26,5 +24,5 @@ func process(delta: float) -> State:
 			ball.position = ball.target_position
 			moving = false
 	else:
-		run_finished.emit(ball.target_position)
+		run_finished.emit(ball.current_action, ball.target_position)
 	return null

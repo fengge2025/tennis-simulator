@@ -1,6 +1,7 @@
 class_name Player extends Node2D
 
-signal hit_finished(_desire_ball_position: Vector2)
+signal hit_finished(desire_ball_position: Vector2)
+signal start_run_finished()
 
 @onready var state_machine: PlayerStateMachine = $PlayerStateMachine
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -8,6 +9,10 @@ signal hit_finished(_desire_ball_position: Vector2)
 
 @export_enum("home", "away") var home_or_away: String = "home"
 @export var color: Color = Color.WHITE
+
+enum ACTION {IDLE, START, PLAY, END}
+
+var current_action: ACTION = ACTION.IDLE
 
 var config_territory: Dictionary = {
 	"hit_x_min": 100,
@@ -19,8 +24,12 @@ var config_territory: Dictionary = {
 var target_position: Vector2 = Vector2.ZERO
 
 func hit_and_run(_target_position: Vector2) -> void:
-	target_position = _target_position
-	state_machine.change_to('run')
+	current_action = ACTION.PLAY
+	_run_handler(_target_position)
+
+func start_point(_target_position: Vector2) -> void:
+	current_action = ACTION.START
+	_run_handler(_target_position)
 
 func _ready() -> void:
 	sprite_2d.modulate = color
@@ -42,8 +51,24 @@ func hit_desire_position() -> Vector2:
 	)	
 	return rand_vec
 
-func _run_finished() -> void:
-	state_machine.change_to('hit')
+func _run_handler(_target_position: Vector2) -> void:
+	target_position = _target_position
+	state_machine.change_to('run')
+
+func _run_finished(action: ACTION) -> void:
+	match action:
+		ACTION.IDLE:
+			pass
+		ACTION.START:
+			state_machine.change_to('idle')
+			start_run_finished.emit()
+		ACTION.PLAY:
+			state_machine.change_to('hit')
+		ACTION.END:
+			pass
+		_:
+			pass
+
 
 func _hit_finished(desire_ball_position: Vector2) -> void:
 	state_machine.change_to('idle')
