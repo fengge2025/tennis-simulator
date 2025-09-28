@@ -9,4 +9,8 @@ script = ExtResource("1_7u7rk")
 
 [node name="Ball" parent="." instance=ExtResource("2_wpxla")]
 
-[node name="Player" parent="." instance=ExtResource("3_onsvd")]
+[node name="PlayerA" parent="." instance=ExtResource("3_onsvd")]
+color = Color(1, 0.184314, 1, 1)
+
+[node name="PlayerB" parent="." instance=ExtResource("3_onsvd")]
+color = Color(0.496566, 0.784822, 0.296596, 1)

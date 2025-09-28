@@ -2,10 +2,12 @@ class_name Player extends Node2D
 
 signal hit_finished(_desire_ball_position: Vector2)
 
-@export_enum("home", "away") var home_or_away: String = "home"
-
 @onready var state_machine: PlayerStateMachine = $PlayerStateMachine
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
+@export_enum("home", "away") var home_or_away: String = "home"
+@export var color: Color = Color.WHITE
 
 var config_territory: Dictionary = {
 	"hit_x_min": 100,
@@ -21,6 +23,8 @@ func hit_and_run(_target_position: Vector2) -> void:
 	state_machine.change_to('run')
 
 func _ready() -> void:
+	sprite_2d.modulate = color
+	
 	state_machine.initialize(self)
 	state_machine.states['run'].run_finished.connect(_run_finished)
 	state_machine.states['hit'].hit_finished.connect(_hit_finished)
