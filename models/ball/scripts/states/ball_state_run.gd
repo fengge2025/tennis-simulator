@@ -14,6 +14,8 @@ func exit() -> void:
 	moving = false
 
 func process(delta: float) -> State:
+	print(ball.target_position)
+	print(ball.position)
 	if moving:
 		var direction = (ball.target_position - ball.position).normalized()
 		var distance = ball.position.distance_to(ball.target_position)

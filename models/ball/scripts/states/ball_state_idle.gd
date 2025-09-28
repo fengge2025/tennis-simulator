@@ -7,5 +7,5 @@ func enter() -> void:
 func exit() -> void:
 	pass
 
-func process(delta: float) -> State:
+func process(_delta: float) -> State:
 	return null
