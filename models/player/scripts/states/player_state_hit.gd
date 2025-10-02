@@ -18,6 +18,5 @@ func exit() -> void:
 	hitting = false
 
 func end_hit(_animation: String) -> void:
-	print(123123)
 	hitting = false
 	hit_finished.emit(player.hit_desire_position())

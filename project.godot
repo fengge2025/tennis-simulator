@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tennis Simulator"
-run/main_scene="res://scenes/ball_playground.tscn"
+run/main_scene="res://scenes/playgrounds/ball_playground.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [display]

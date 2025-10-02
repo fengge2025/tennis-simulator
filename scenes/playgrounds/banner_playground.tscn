@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cplefsd1lf56s"]
+
+[ext_resource type="Script" path="res://scenes/playgrounds/scripts/banner_playground.gd" id="1_0fpqo"]
+[ext_resource type="PackedScene" uid="uid://b7qwq76fes3u1" path="res://models/banner/banner.tscn" id="2_igp5d"]
+
+[node name="BannerPlayground" type="Node2D"]
+script = ExtResource("1_0fpqo")
+
+[node name="Banner" parent="." instance=ExtResource("2_igp5d")]
