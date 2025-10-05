@@ -20,7 +20,7 @@ func _ready() -> void:
 func _ball_run_finished(target_position: Vector2) -> void:
 	receive_player.hit_and_run(target_position)
 	
-func _player_hit_finished(desire_ball_position: Vector2)-> void:
+func _player_hit_finished(_hit_result: String, desire_ball_position: Vector2)-> void:
 	ball.run(desire_ball_position)
 	_swap_players()
 	

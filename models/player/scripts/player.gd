@@ -70,6 +70,6 @@ func _run_finished(action: ACTION) -> void:
 			pass
 
 
-func _hit_finished(desire_ball_position: Vector2) -> void:
+func _hit_finished(hit_result: String, desire_ball_position: Vector2) -> void:
 	state_machine.change_to('idle')
-	hit_finished.emit(desire_ball_position)
+	hit_finished.emit(hit_result, desire_ball_position)
