@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://cydppjdeeaafa"]
+
+[ext_resource type="Script" path="res://scenes/playgrounds/scripts/point_playground.gd" id="1_rkl1e"]
+[ext_resource type="PackedScene" uid="uid://dcc05q6l40g4t" path="res://models/point/point.tscn" id="2_3wqtp"]
+[ext_resource type="PackedScene" uid="uid://s4q8h48y8l4u" path="res://models/ball/ball.tscn" id="3_cekby"]
+[ext_resource type="PackedScene" uid="uid://c7ysh8prm1be3" path="res://models/player/player.tscn" id="4_jnky6"]
+[ext_resource type="PackedScene" uid="uid://b7qwq76fes3u1" path="res://models/banner/banner.tscn" id="5_ml0j1"]
+
+[node name="PointPlayground" type="Node2D"]
+script = ExtResource("1_rkl1e")
+
+[node name="Point" parent="." instance=ExtResource("2_3wqtp")]
+
+[node name="Ball" parent="." instance=ExtResource("3_cekby")]
+
+[node name="PlayerA" parent="." instance=ExtResource("4_jnky6")]
+color = Color(1, 0, 0, 1)
+
+[node name="PlayerB" parent="." instance=ExtResource("4_jnky6")]
+home_or_away = "away"
+color = Color(0, 1, 0, 1)
+
+[node name="Banner" parent="." instance=ExtResource("5_ml0j1")]

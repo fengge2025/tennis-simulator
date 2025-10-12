@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://models/ball/scripts/ball.gd" id="1_g6rup"]
 [ext_resource type="Texture2D" uid="uid://i8pybsocxmnu" path="res://models/ball/assets/tennis-ball-0001.png" id="2_d3ceu"]
-[ext_resource type="Script" path="res://models/ball/scripts/states/ball_state_machine.gd" id="3_f76yd"]
+[ext_resource type="Script" path="res://models/ball/scripts/ball_state_machine.gd" id="3_f76yd"]
 [ext_resource type="Script" path="res://models/ball/scripts/states/ball_state_run.gd" id="4_ojb8j"]
 [ext_resource type="Script" path="res://models/ball/scripts/states/ball_state_idle.gd" id="5_cc5cv"]
 

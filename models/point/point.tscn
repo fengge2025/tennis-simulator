@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://dcc05q6l40g4t"]
+
+[ext_resource type="Script" path="res://models/point/scripts/point.gd" id="1_dr177"]
+[ext_resource type="Script" path="res://models/point/scripts/point_state_machine.gd" id="1_n74uq"]
+[ext_resource type="Script" path="res://models/point/scripts/states/point_state_end.gd" id="2_x7a4y"]
+[ext_resource type="Script" path="res://models/point/scripts/states/point_state_hit.gd" id="3_hv7jo"]
+[ext_resource type="Script" path="res://models/point/scripts/states/point_state_idle.gd" id="4_bsnvl"]
+[ext_resource type="Script" path="res://models/point/scripts/states/point_state_prepare.gd" id="5_cpe6v"]
+
+[node name="Point" type="Node2D"]
+script = ExtResource("1_dr177")
+
+[node name="PointStateMachine" type="Node" parent="."]
+script = ExtResource("1_n74uq")
+
+[node name="PointStateEnd" type="Node" parent="PointStateMachine"]
+script = ExtResource("2_x7a4y")
+state_name = "end"
+
+[node name="PointStateHit" type="Node" parent="PointStateMachine"]
+script = ExtResource("3_hv7jo")
+state_name = "hit"
+
+[node name="PointStateIdle" type="Node" parent="PointStateMachine"]
+script = ExtResource("4_bsnvl")
+state_name = "idle"
+
+[node name="PointStatePrepare" type="Node" parent="PointStateMachine"]
+script = ExtResource("5_cpe6v")
+state_name = "prepare"

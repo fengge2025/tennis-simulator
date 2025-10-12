@@ -1,20 +1,17 @@
 class_name PlayerStateRun extends PlayerState
 
-signal run_finished(action: Player.ACTION)
-
-var moving: bool = false
 var speed: float = 400.0
 
 func enter() -> void:
 	print("player enter run")
 	player.update_animation("run")
-	moving = true
+	state_processing = true
 	
 func exit() -> void:
-	moving = false
+	state_processing = false
 
 func process(delta: float) -> State:
-	if moving:
+	if state_processing:
 		var direction = (player.target_position - player.position).normalized()
 		var distance = player.position.distance_to(player.target_position)
 
@@ -22,7 +19,8 @@ func process(delta: float) -> State:
 			player.position += direction * speed * delta
 		else:
 			player.position = player.target_position
-			moving = false
+			state_processing = false
 	else:
-		run_finished.emit(player.current_action)
+		var state_outcome = PlayerStateOutcome.run_outcome(player.current_action)
+		state_finished.emit(state_outcome)
 	return null

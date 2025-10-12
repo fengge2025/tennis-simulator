@@ -3,15 +3,16 @@ class_name State extends Node
 @export var state_name: String
 
 var state_machine: StateMachine
+var state_processing = false
 
 func _ready() -> void:
 	state_machine = $".."
 
 func enter() -> void:
-	pass
+	state_processing = true
 
 func exit() -> void:
-	pass
+	state_processing = false
 	
 func process(_delta: float) -> State:
 	return null

@@ -15,8 +15,8 @@ func display_banner(_animation_name: String, display_during: float = 2.0) -> voi
 	update_animation(_animation_name)
 	timer.start(display_during)
 
-func update_animation(animation_name: String) -> void:
-	animation_player.play(animation_name)
+func update_animation(_animation_name: String) -> void:
+	animation_player.play(_animation_name)
 	
 func _on_timeout() -> void:
 	update_animation('RESET')
