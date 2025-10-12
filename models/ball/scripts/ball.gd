@@ -1,5 +1,7 @@
 class_name Ball extends Node2D
 
+var logger: Logger = Logger.initialize("ball")
+
 signal state_finished(state_outcome: BallStateOutcome)
 
 @onready var state_machine: BallStateMachine = $BallStateMachine

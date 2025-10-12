@@ -1,13 +1,13 @@
 class_name PointStatePrepare extends PointState
 
 func enter() -> void:
-	print("point enter prepare")
+	point.logger.log("point enter prepare")
 	state_processing = true
 
 	processing_done = {
 		"ball": false,
-		"player_a": false,
-		"player_b": false,
+		"home_player": false,
+		"away_player": false,
 		"banner": false,
 	}
 

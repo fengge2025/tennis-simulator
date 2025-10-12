@@ -3,7 +3,7 @@ class_name BallStateRun extends BallState
 var speed: float = 100.0
 
 func enter() -> void:
-	print("ball enter run")
+	ball.logger.log("ball enter run")
 	ball.update_animation("run")
 	state_processing = true
 	

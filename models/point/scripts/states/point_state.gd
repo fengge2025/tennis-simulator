@@ -6,14 +6,14 @@ var processing_done: Dictionary = {}
 
 func connect_on_state_finished() -> void:
 	point.ball.state_finished.connect(_on_ball_state_finished)
-	point.receive_player.state_finished.connect(_on_player_a_state_finished)
-	point.hit_player.state_finished.connect(_on_player_b_state_finished)
+	point.receive_player.state_finished.connect(_on_player_state_finished)
+	point.hit_player.state_finished.connect(_on_player_state_finished)
 	point.banner.animation_finished.connect(_on_banner_animation_finished)
 
 func disconnect_on_state_finished() -> void:
 	point.ball.state_finished.disconnect(_on_ball_state_finished)
-	point.receive_player.state_finished.disconnect(_on_player_a_state_finished)
-	point.hit_player.state_finished.disconnect(_on_player_b_state_finished)
+	point.receive_player.state_finished.disconnect(_on_player_state_finished)
+	point.hit_player.state_finished.disconnect(_on_player_state_finished)
 	point.banner.animation_finished.disconnect(_on_banner_animation_finished)
 
 func process(_delta: float) -> State:
@@ -32,26 +32,10 @@ func _on_ball_state_finished(state_outcome: BallStateOutcome) -> void:
 		_:
 			pass
 
-func _on_player_a_state_finished(state_outcome: PlayerStateOutcome) -> void:
+func _on_player_state_finished(state_outcome: PlayerStateOutcome) -> void:
 	match state_outcome.action:
 		Player.ACTION.PREPARE:
-			processing_done["player_a"] = true
-		Player.ACTION.HIT_AND_RUN:
-			match state_outcome.hit_result:
-				Player.HIT_RESULT.HIT:
-					point.ball.run(state_outcome.desire_ball_position)
-					_swap_players()
-				Player.HIT_RESULT.MISS:
-					state_finished.emit()
-				_:
-					pass
-		_:
-			pass
-
-func _on_player_b_state_finished(state_outcome: PlayerStateOutcome) -> void:
-	match state_outcome.action:
-		Player.ACTION.PREPARE:
-			processing_done["player_b"] = true
+			processing_done["%s_player" % state_outcome.home_or_away] = true
 		Player.ACTION.HIT_AND_RUN:
 			match state_outcome.hit_result:
 				Player.HIT_RESULT.HIT:
@@ -68,6 +52,4 @@ func _on_banner_animation_finished(_animation_name: String) -> void:
 	processing_done["banner"] = true
 
 func _swap_players():
-	var temp: Player = point.hit_player
-	point.hit_player = point.receive_player
-	point.receive_player = temp
+	point.receive_turn ^= 1

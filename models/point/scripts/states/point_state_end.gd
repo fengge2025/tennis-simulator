@@ -1,7 +1,7 @@
 class_name PointStateEnd extends PointState
 
 func enter() -> void:
-	print("point enter end")
+	point.logger.log("point enter end")
 	state_processing = true
 
 func exit() -> void:

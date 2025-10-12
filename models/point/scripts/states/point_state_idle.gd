@@ -1,7 +1,7 @@
 class_name PointStateIdle extends PointState
 
 func enter() -> void:
-	print("point enter idle")
+	point.logger.log("point enter idle")
 	state_processing = true
 
 func exit() -> void:

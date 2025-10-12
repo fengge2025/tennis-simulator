@@ -1,7 +1,7 @@
 class_name PlayerStateHit extends PlayerState
 
 func enter() -> void:
-	print("player enter hit")
+	player.logger.log("player enter hit")
 	state_processing = true
 	player.update_animation("hit")
 	

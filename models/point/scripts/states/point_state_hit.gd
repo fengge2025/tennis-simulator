@@ -1,7 +1,7 @@
 class_name PointStateHit extends PointState
 
 func enter() -> void:
-	print("point enter hit")
+	point.logger.log("point enter hit")
 	state_processing = true
 
 	self.connect_on_state_finished()
