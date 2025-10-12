@@ -38,10 +38,10 @@ func _on_player_state_finished(state_outcome: PlayerStateOutcome) -> void:
 			processing_done["%s_player" % state_outcome.home_or_away] = true
 		Player.ACTION.HIT_AND_RUN:
 			match state_outcome.hit_result:
-				Player.HIT_RESULT.HIT:
+				PlayerHit.HIT_RESULT.HIT:
 					point.ball.run(state_outcome.desire_ball_position)
 					_swap_players()
-				Player.HIT_RESULT.MISS:
+				PlayerHit.HIT_RESULT.MISS:
 					state_finished.emit()
 				_:
 					pass

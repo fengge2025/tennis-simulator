@@ -12,13 +12,15 @@ signal state_finished(state_outcome: PlayerStateOutcome)
 @export var color: Color = Color.WHITE
 
 enum ACTION {IDLE, PREPARE, HIT_AND_RUN, END}
-enum HIT_RESULT {HIT, MISS}
 
 var current_action: ACTION = ACTION.IDLE
 
 var match_configs: MatchConfig
 
 var target_position: Vector2 = Vector2.ZERO
+
+var player_stat: PlayerStat
+var player_hit: PlayerHit
 
 func hit_and_run(_target_position: Vector2) -> void:
 	current_action = ACTION.HIT_AND_RUN
@@ -36,6 +38,10 @@ func _ready() -> void:
 	match_configs = LoadConfigs.match_configs.get(home_or_away)
 	if match_configs.loaded == false:
 		logger.error("Match configs not loaded for player %s" % home_or_away)
+
+
+	player_stat = PlayerStat.new(12, 20, 20)
+	player_hit = PlayerHit.new(match_configs, player_stat)
 	
 	state_machine.initialize(self)
 	state_machine.states['run'].state_finished.connect(_on_state_finished)
@@ -44,13 +50,6 @@ func _ready() -> void:
 
 func update_animation( animation: String) -> void:
 	animation_player.play(animation)
-
-func _hit_desire_position() -> Vector2:
-	var rand_vec = Vector2(
-		randf_range(match_configs["hit_x_min"], match_configs["hit_x_max"]),
-		randf_range(match_configs["hit_y_min"], match_configs["hit_y_max"])
-	)	
-	return rand_vec
 
 func _on_state_finished(state_outcome: PlayerStateOutcome) -> void:
 	match state_outcome.action:
@@ -66,22 +65,11 @@ func _on_state_finished(state_outcome: PlayerStateOutcome) -> void:
 		_:
 			pass
 
-func _get_random_int() -> int:
-	randomize() # ensures different result each time you run the game
-	return randi_range(0, 100)
-	
-func _get_hit_result() -> Player.HIT_RESULT:
-	if _get_random_int() > 50:
-		return Player.HIT_RESULT.HIT
-	else:
-		return Player.HIT_RESULT.MISS
-
-
 func _on_animation_finished(animation_name: String) -> void:
 	match animation_name:
 		"hit":
-			var hit_desire_position1 = _hit_desire_position()
-			var hit_result1 = _get_hit_result()
+			var hit_desire_position1 = player_hit.get_hit_desire_position()
+			var hit_result1 = player_hit.get_hit_result()
 			var state_outcome = PlayerStateOutcome.hit_outcome(current_action, hit_result1, hit_desire_position1)
 			state_finished.emit(state_outcome)
 		_:

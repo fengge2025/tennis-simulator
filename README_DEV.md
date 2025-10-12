@@ -5,12 +5,19 @@
 ### ball
 ### player
 ### point
-- [] stay on territory
-- []
+- [x] stay on territory
+- [] serve
+- [] add player stat
 
 ### game
 ### set
 ### match
+
+## art
+
+## music
+
+## sound
 
 # auxiliary function
 - [X] debug print mode
