@@ -1,5 +1,8 @@
 class_name PointStatePrepare extends PointState
 
+func _ready() -> void:
+	state_name = "prepare"
+
 func enter() -> void:
 	point.logger.log("point enter prepare")
 	state_processing = true
@@ -28,5 +31,6 @@ func process(_delta: float) -> State:
 		if not false in processing_done.values():
 			state_processing = false
 	else:
-		state_finished.emit()
+		var state_outcome = PointStateOutcome.prepare_outcome(point.current_action)
+		state_finished.emit(state_outcome)
 	return null

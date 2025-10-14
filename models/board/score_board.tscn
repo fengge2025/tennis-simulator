@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6e24b3cqp0o8"]
+
+[ext_resource type="Script" path="res://models/board/scripts/score_board.gd" id="1_0fq5q"]
+
+[node name="ScoreBoard" type="Node2D"]
+script = ExtResource("1_0fq5q")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 2
+
+[node name="HomeName" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "home"
+
+[node name="HomeScore" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="AwayName" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "away"
+
+[node name="AwayScore" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "10"

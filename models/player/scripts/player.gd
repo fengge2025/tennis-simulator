@@ -7,6 +7,7 @@ signal state_finished(state_outcome: PlayerStateOutcome)
 @onready var state_machine: PlayerStateMachine = $PlayerStateMachine
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var label: Label = $Label
 
 @export_enum("home", "away") var home_or_away: String = "home"
 @export var color: Color = Color.WHITE
@@ -33,6 +34,7 @@ func prepare(_target_position: Vector2) -> void:
 	state_machine.change_to('run')
 
 func _ready() -> void:
+	label.text = home_or_away
 	sprite_2d.modulate = color
 
 	match_configs = LoadConfigs.match_configs.get(home_or_away)
@@ -68,9 +70,7 @@ func _on_state_finished(state_outcome: PlayerStateOutcome) -> void:
 func _on_animation_finished(animation_name: String) -> void:
 	match animation_name:
 		"hit":
-			var hit_desire_position1 = player_hit.get_hit_desire_position()
-			var hit_result1 = player_hit.get_hit_result()
-			var state_outcome = PlayerStateOutcome.hit_outcome(current_action, hit_result1, hit_desire_position1)
+			var state_outcome = PlayerStateOutcome.hit_outcome(current_action, home_or_away, player_hit.get_hit_result(),  player_hit.get_hit_desire_position())
 			state_finished.emit(state_outcome)
 		_:
 			pass

@@ -1,6 +1,9 @@
 class_name PlayerStateRun extends PlayerState
 
-var speed: float = 400.0
+var speed: float = 800.0
+
+func _ready() -> void:
+	state_name = "run"
 
 func enter() -> void:
 	player.logger.log("player enter run")

@@ -1,8 +1,14 @@
 class_name PointState extends State
 
-signal state_finished()
+signal state_finished(state_outcome: PointStateOutcome)
+
 var point: Point
 var processing_done: Dictionary = {}
+
+var player_scored_mapping = {
+	"away": "home",
+	"home": "away",
+}
 
 func connect_on_state_finished() -> void:
 	point.ball.state_finished.connect(_on_ball_state_finished)
@@ -16,11 +22,20 @@ func disconnect_on_state_finished() -> void:
 	point.hit_player.state_finished.disconnect(_on_player_state_finished)
 	point.banner.animation_finished.disconnect(_on_banner_animation_finished)
 
-func process(_delta: float) -> State:
+func wait_process(_delta: float) -> State:
 	if state_processing:
 		pass
 	else:
-		state_finished.emit()
+		var state_outcome = PointStateOutcome.new()
+		state_finished.emit(state_outcome)
+	return null
+
+func pass_process(_delta: float) -> State:
+	if state_processing:
+		state_processing = false
+	else:
+		var state_outcome = PointStateOutcome.new()
+		state_finished.emit(state_outcome)
 	return null
 
 func _on_ball_state_finished(state_outcome: BallStateOutcome) -> void:
@@ -32,17 +47,18 @@ func _on_ball_state_finished(state_outcome: BallStateOutcome) -> void:
 		_:
 			pass
 
-func _on_player_state_finished(state_outcome: PlayerStateOutcome) -> void:
-	match state_outcome.action:
+func _on_player_state_finished(player_state_outcome: PlayerStateOutcome) -> void:
+	match player_state_outcome.action:
 		Player.ACTION.PREPARE:
-			processing_done["%s_player" % state_outcome.home_or_away] = true
+			processing_done["%s_player" % player_state_outcome.home_or_away] = true
 		Player.ACTION.HIT_AND_RUN:
-			match state_outcome.hit_result:
+			match player_state_outcome.hit_result:
 				PlayerHit.HIT_RESULT.HIT:
-					point.ball.run(state_outcome.desire_ball_position)
+					point.ball.run(player_state_outcome.desire_ball_position)
 					_swap_players()
 				PlayerHit.HIT_RESULT.MISS:
-					state_finished.emit()
+					var state_outcome = PointStateOutcome.hit_outcome(point.current_action, player_scored_mapping[player_state_outcome.home_or_away])
+					state_finished.emit(state_outcome)
 				_:
 					pass
 		_:

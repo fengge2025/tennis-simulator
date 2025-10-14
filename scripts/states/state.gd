@@ -1,6 +1,6 @@
 class_name State extends Node
 
-@export var state_name: String
+var state_name: String
 
 var state_machine: StateMachine
 var state_processing = false

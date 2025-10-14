@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjaejptjfaxae"]
+
+[ext_resource type="Script" path="res://models/game/scripts/game.gd" id="1_02h4w"]
+[ext_resource type="Script" path="res://models/game/scripts/game_state_machine.gd" id="2_81gts"]
+[ext_resource type="Script" path="res://models/game/scripts/states/game_state_end.gd" id="3_tro7e"]
+[ext_resource type="Script" path="res://models/game/scripts/states/game_state_play.gd" id="4_o8bym"]
+[ext_resource type="Script" path="res://models/game/scripts/states/game_state_start.gd" id="5_ngm0w"]
+[ext_resource type="Script" path="res://models/game/scripts/states/game_state_idle.gd" id="6_ufu72"]
+[ext_resource type="PackedScene" uid="uid://dcc05q6l40g4t" path="res://models/point/point.tscn" id="7_0m40g"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_02h4w")
+
+[node name="GameStateMachine" type="Node" parent="."]
+script = ExtResource("2_81gts")
+
+[node name="GameStateEnd" type="Node" parent="GameStateMachine"]
+script = ExtResource("3_tro7e")
+
+[node name="GameStatePlay" type="Node" parent="GameStateMachine"]
+script = ExtResource("4_o8bym")
+
+[node name="GameStateStart" type="Node" parent="GameStateMachine"]
+script = ExtResource("5_ngm0w")
+
+[node name="GameStateIdle" type="Node" parent="GameStateMachine"]
+script = ExtResource("6_ufu72")
+
+[node name="Point" parent="." instance=ExtResource("7_0m40g")]

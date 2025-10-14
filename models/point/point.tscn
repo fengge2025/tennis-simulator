@@ -15,16 +15,12 @@ script = ExtResource("1_n74uq")
 
 [node name="PointStateEnd" type="Node" parent="PointStateMachine"]
 script = ExtResource("2_x7a4y")
-state_name = "end"
 
 [node name="PointStateHit" type="Node" parent="PointStateMachine"]
 script = ExtResource("3_hv7jo")
-state_name = "hit"
 
 [node name="PointStateIdle" type="Node" parent="PointStateMachine"]
 script = ExtResource("4_bsnvl")
-state_name = "idle"
 
 [node name="PointStatePrepare" type="Node" parent="PointStateMachine"]
 script = ExtResource("5_cpe6v")
-state_name = "prepare"

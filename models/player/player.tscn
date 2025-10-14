@@ -83,6 +83,13 @@ _data = {
 [node name="Player" type="Node2D"]
 script = ExtResource("1_jpf2m")
 
+[node name="Label" type="Label" parent="."]
+offset_left = 5.0
+offset_top = 20.0
+offset_right = 50.0
+offset_bottom = 43.0
+text = "home"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_7moey")
 hframes = 4
@@ -98,12 +105,9 @@ script = ExtResource("3_gcyq3")
 
 [node name="PlayerStateHit" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("5_owva3")
-state_name = "hit"
 
 [node name="PlayerStateIdle" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("6_8ci33")
-state_name = "idle"
 
 [node name="PlayerStateRun" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("4_6tmny")
-state_name = "run"

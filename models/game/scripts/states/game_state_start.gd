@@ -1,14 +1,14 @@
-class_name PointStateIdle extends PointState
+class_name GameStateStart extends GameState
 
 func _ready() -> void:
-	state_name = "idle"
+	state_name = "start"
 
 func enter() -> void:
-	point.logger.log("point enter idle")
+	game.logger.log("game enter start")
 	state_processing = true
 
 func exit() -> void:
 	state_processing = false
 
 func process(delta: float) -> State:
-	return wait_process(delta)
+	return pass_process(delta)

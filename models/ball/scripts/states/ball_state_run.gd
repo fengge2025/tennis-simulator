@@ -1,6 +1,6 @@
 class_name BallStateRun extends BallState
 
-var speed: float = 100.0
+var speed: float = 200.0
 
 func enter() -> void:
 	ball.logger.log("ball enter run")
