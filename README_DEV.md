@@ -10,7 +10,8 @@
 - [] add player stat
 
 ### game
-- [] add scores
+- [x] add scores
+	- [] 15 30 40 ad scores
 - [] switch ground
 ### set
 ### match
@@ -29,6 +30,10 @@
 - [] state return null not state
 - [] state_outcome vs. action outcome
 - [] split _on_point_finished into states
+
+
+## lint and format
+- [x] linter
 - [] precommit
 
 
