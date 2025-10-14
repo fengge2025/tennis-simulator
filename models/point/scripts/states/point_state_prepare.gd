@@ -1,7 +1,9 @@
 class_name PointStatePrepare extends PointState
 
+
 func _ready() -> void:
 	state_name = "prepare"
+
 
 func enter() -> void:
 	point.logger.log("point enter prepare")
@@ -21,10 +23,12 @@ func enter() -> void:
 	point.receive_player.prepare(Vector2(300, 300))
 	point.banner.display_banner("start")
 
+
 func exit() -> void:
 	state_processing = false
 
 	self.disconnect_on_state_finished()
+
 
 func process(_delta: float) -> State:
 	if state_processing:

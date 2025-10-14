@@ -4,6 +4,7 @@ signal state_finished(state_outcome: PlayerStateOutcome)
 
 var player: Player
 
+
 func process(_delta: float) -> State:
 	if state_processing:
 		pass

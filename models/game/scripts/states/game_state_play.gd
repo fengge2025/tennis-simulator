@@ -1,9 +1,11 @@
 class_name GameStatePlay extends GameState
 
-signal update_score()
+signal update_score
+
 
 func _ready() -> void:
 	state_name = "play"
+
 
 func enter() -> void:
 	game.logger.log("game enter play")
@@ -13,13 +15,16 @@ func enter() -> void:
 
 	game.point.start_point()
 
+
 func exit() -> void:
 	state_processing = false
 
 	disconnect_on_state_finished()
 
+
 func process(delta: float) -> State:
 	return wait_process(delta)
+
 
 func _on_point_finished(point_state_outcome: PointStateOutcome) -> void:
 	match point_state_outcome.action:

@@ -5,12 +5,14 @@ var match_configs: Dictionary = {}
 var debug_configs_loaded: bool = false
 var match_configs_loaded: bool = false
 
+
 func _ready():
 	load_debug_config()
 	load_match_config()
 
 	if not match_configs_loaded:
 		push_error("Match configs not loaded.")
+
 
 func load_config(file_name: String) -> ConfigFile:
 	var config_file = ConfigFile.new()
@@ -25,7 +27,7 @@ func load_debug_config() -> void:
 	var config_file = load_config("debug.ini")
 	if config_file == null:
 		return
-	
+
 	var logger_domains = config_file.get_value("logger", "logger_domains", [])
 
 	debug_configs = {
@@ -33,11 +35,12 @@ func load_debug_config() -> void:
 	}
 	debug_configs_loaded = true
 
+
 func load_match_config() -> void:
 	var config_file = load_config("match.ini")
 	if config_file == null:
 		return
-	
+
 	var territory_x_min = config_file.get_value("territory", "territory_x_min", 0)
 	var territory_x_max = config_file.get_value("territory", "territory_x_max", 0)
 	var territory_home_y_min = config_file.get_value("territory", "territory_home_y_min", 0)
@@ -55,7 +58,7 @@ func load_match_config() -> void:
 	home.hit_y_min = territory_away_y_min
 	home.hit_y_max = territory_away_y_max
 	home.loaded = true
-	
+
 	var away = MatchConfig.new()
 	away.run_x_min = territory_x_min
 	away.run_x_max = territory_x_max
@@ -66,7 +69,7 @@ func load_match_config() -> void:
 	away.hit_y_min = territory_home_y_min
 	away.hit_y_max = territory_home_y_max
 	away.loaded = true
-	
+
 	match_configs["home"] = home
 	match_configs["away"] = away
 	match_configs_loaded = true

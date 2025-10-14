@@ -4,6 +4,7 @@ signal state_finished(state_outcome: BallStateOutcome)
 
 var ball: Ball
 
+
 func process(_delta: float) -> State:
 	if state_processing:
 		pass

@@ -2,16 +2,20 @@ class_name PlayerStateRun extends PlayerState
 
 var speed: float = 800.0
 
+
 func _ready() -> void:
 	state_name = "run"
+
 
 func enter() -> void:
 	player.logger.log("player enter run")
 	player.update_animation("run")
 	state_processing = true
-	
+
+
 func exit() -> void:
 	state_processing = false
+
 
 func process(delta: float) -> State:
 	if state_processing:
@@ -24,6 +28,8 @@ func process(delta: float) -> State:
 			player.position = player.target_position
 			state_processing = false
 	else:
-		var state_outcome = PlayerStateOutcome.run_outcome(player.current_action, player.home_or_away)
+		var state_outcome = PlayerStateOutcome.run_outcome(
+			player.current_action, player.home_or_away
+		)
 		state_finished.emit(state_outcome)
 	return null
