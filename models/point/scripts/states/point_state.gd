@@ -5,7 +5,7 @@ signal state_finished(state_outcome: PointStateOutcome)
 var point: Point
 var processing_done: Dictionary = {}
 
-var player_scored_mapping = {
+var player_scored_mapping: Dictionary = {
 	"away": "home",
 	"home": "away",
 }
@@ -29,7 +29,7 @@ func wait_process(_delta: float) -> State:
 	if state_processing:
 		pass
 	else:
-		var state_outcome = PointStateOutcome.new()
+		var state_outcome: PointStateOutcome = PointStateOutcome.new()
 		state_finished.emit(state_outcome)
 	return null
 
@@ -38,7 +38,7 @@ func pass_process(_delta: float) -> State:
 	if state_processing:
 		state_processing = false
 	else:
-		var state_outcome = PointStateOutcome.new()
+		var state_outcome: PointStateOutcome = PointStateOutcome.new()
 		state_finished.emit(state_outcome)
 	return null
 

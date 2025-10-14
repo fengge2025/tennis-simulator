@@ -22,7 +22,7 @@ static func hit_outcome(
 
 
 static func run_outcome(_action: Player.Action, _home_or_away: String) -> PlayerStateOutcome:
-	var outcome = PlayerStateOutcome.new()
+	var outcome: PlayerStateOutcome = PlayerStateOutcome.new()
 	outcome.action = _action
 	outcome.home_or_away = _home_or_away
 	return outcome
