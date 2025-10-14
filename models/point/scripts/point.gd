@@ -1,24 +1,22 @@
 class_name Point extends Node2D
 
-var logger: Logger = Logger.initialize("point")
-
 signal state_finished(state_outcome: PointStateOutcome)
 
-@onready var state_machine: PointStateMachine = $PointStateMachine
-
-enum ACTION {
+enum Action {
 	IDLE,
 	PREPARE,
 	HIT,
 	END,
 }
 
-enum POINT_RESULT {
+enum PointResult {
 	HOME_PLAYER_SCORED,
 	AWAY_PLAYER_SCORED,
 }
 
-var current_action: ACTION = ACTION.IDLE
+var logger: Logger = Logger.initialize("point")
+
+var current_action: Action = Action.IDLE
 
 var ball: Ball
 var banner: Banner
@@ -31,15 +29,16 @@ var hit_player: Player:
 	get:
 		if receive_turn == 0:
 			return home_player
-		else:
-			return away_player
+
+		return away_player
 var receive_player: Player:
 	get:
 		if receive_turn == 0:
 			return away_player
-		else:
-			return home_player
 
+		return home_player
+
+@onready var state_machine: PointStateMachine = $PointStateMachine
 
 func initialize(_banner: Banner, _ball: Ball, _home_player: Player, _away_player: Player) -> void:
 	banner = _banner
@@ -54,7 +53,7 @@ func initialize(_banner: Banner, _ball: Ball, _home_player: Player, _away_player
 
 
 func start_point() -> void:
-	current_action = ACTION.PREPARE
+	current_action = Action.PREPARE
 	state_machine.change_to("prepare")
 
 
@@ -63,13 +62,13 @@ func _ready() -> void:
 
 
 func _on_prepare_finished(_state_outcome: PointStateOutcome) -> void:
-	current_action = ACTION.HIT
+	current_action = Action.HIT
 	state_machine.change_to("hit")
 
 
 func _on_hit_finished(state_outcome: PointStateOutcome) -> void:
 	score_home_or_away = state_outcome.score_home_or_away
-	current_action = ACTION.END
+	current_action = Action.END
 	state_machine.change_to("end")
 
 

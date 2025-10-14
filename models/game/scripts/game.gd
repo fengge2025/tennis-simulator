@@ -2,19 +2,16 @@ class_name Game extends Node2D
 
 signal update_score(score: ScoreBoard.Score)
 
-var logger: Logger = Logger.initialize("game")
-
-@onready var state_machine: GameStateMachine = $GameStateMachine
-@onready var point: Point = $Point
-
-enum ACTION {
+enum Action {
 	IDLE,
 	START,
 	PLAY,
 	END,
 }
 
-var current_action: ACTION = ACTION.IDLE
+var logger: Logger = Logger.initialize("game")
+
+var current_action: Action = Action.IDLE
 
 var ball: Ball
 var banner: Banner
@@ -23,6 +20,8 @@ var away_player: Player
 
 var score: ScoreBoard.Score
 
+@onready var state_machine: GameStateMachine = $GameStateMachine
+@onready var point: Point = $Point
 
 func initialize(_banner: Banner, _ball: Ball, _home_player: Player, _away_player: Player) -> void:
 	banner = _banner

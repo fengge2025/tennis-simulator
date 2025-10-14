@@ -1,8 +1,8 @@
 class_name PlayerHit extends Object
 
-var logger: Logger = Logger.initialize("player")
+enum HitResult { HIT, MISS }
 
-enum HIT_RESULT { HIT, MISS }
+var logger: Logger = Logger.initialize("player")
 
 var match_configs: MatchConfig
 var player_stat: PlayerStat
@@ -21,11 +21,11 @@ func get_hit_desire_position() -> Vector2:
 	return rand_vec
 
 
-func get_hit_result() -> HIT_RESULT:
+func get_hit_result() -> HitResult:
 	if _get_random_int() < player_stat.hit_point:
-		return HIT_RESULT.HIT
-	else:
-		return HIT_RESULT.MISS
+		return HitResult.HIT
+
+	return HitResult.MISS
 
 
 func _get_random_int() -> int:

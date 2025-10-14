@@ -1,25 +1,24 @@
 class_name Ball extends Node2D
 
+signal state_finished(state_outcome: BallStateOutcome)
+
+enum Action { IDLE, PREPARE, RUN }
+
 var logger: Logger = Logger.initialize("ball")
 
-signal state_finished(state_outcome: BallStateOutcome)
+var target_position: Vector2 = Vector2.ZERO
+var current_action: Action = Action.IDLE
 
 @onready var state_machine: BallStateMachine = $BallStateMachine
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-enum ACTION { IDLE, PREPARE, RUN }
-
-var target_position: Vector2 = Vector2.ZERO
-var current_action: ACTION = ACTION.IDLE
-
-
 func prepare(_target_position: Vector2) -> void:
-	current_action = ACTION.PREPARE
+	current_action = Action.PREPARE
 	_run_handler(_target_position)
 
 
 func run(_target_position: Vector2) -> void:
-	current_action = ACTION.RUN
+	current_action = Action.RUN
 	_run_handler(_target_position)
 
 
@@ -39,12 +38,12 @@ func _run_handler(_target_position: Vector2) -> void:
 
 func _on_state_finished(state_outcome: BallStateOutcome) -> void:
 	match state_outcome.action:
-		ACTION.IDLE:
+		Action.IDLE:
 			pass
-		ACTION.PREPARE:
+		Action.PREPARE:
 			state_machine.change_to("idle")
 			state_finished.emit(state_outcome)
-		ACTION.RUN:
+		Action.RUN:
 			state_machine.change_to("idle")
 			state_finished.emit(state_outcome)
 		_:

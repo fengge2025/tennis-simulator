@@ -1,3 +1,3 @@
 class_name GameStateOutcome extends StateOutcome
 
-var action: Game.ACTION
+var action: Game.Action

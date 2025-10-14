@@ -2,11 +2,10 @@ class_name Banner extends Node2D
 
 signal animation_finished(animation_name: String)
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var timer: Timer = $Timer
-
 var animation_name: String = ""
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var timer: Timer = $Timer
 
 func _ready() -> void:
 	timer.timeout.connect(_on_timeout)

@@ -37,10 +37,13 @@
 - [] reset button
 
 # code of conduct
+
 ## getters and setters
 https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html#properties-setters-and-getters
 ## inner class
 https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html#inner-classes
+## naming conventions
+https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html#naming-conventions
 
 ## names
 - file point_state

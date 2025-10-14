@@ -1,20 +1,15 @@
 class_name Player extends Node2D
 
-var logger: Logger = Logger.initialize("player")
-
 signal state_finished(state_outcome: PlayerStateOutcome)
 
-@onready var state_machine: PlayerStateMachine = $PlayerStateMachine
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var label: Label = $Label
+enum Action { IDLE, PREPARE, HIT_AND_RUN, END }
 
 @export_enum("home", "away") var home_or_away: String = "home"
 @export var color: Color = Color.WHITE
 
-enum ACTION { IDLE, PREPARE, HIT_AND_RUN, END }
+var logger: Logger = Logger.initialize("player")
 
-var current_action: ACTION = ACTION.IDLE
+var current_action: Action = Action.IDLE
 
 var match_configs: MatchConfig
 
@@ -23,15 +18,19 @@ var target_position: Vector2 = Vector2.ZERO
 var player_stat: PlayerStat
 var player_hit: PlayerHit
 
+@onready var state_machine: PlayerStateMachine = $PlayerStateMachine
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var label: Label = $Label
 
 func hit_and_run(_target_position: Vector2) -> void:
-	current_action = ACTION.HIT_AND_RUN
+	current_action = Action.HIT_AND_RUN
 	target_position = _target_position
 	state_machine.change_to("run")
 
 
 func prepare(_target_position: Vector2) -> void:
-	current_action = ACTION.PREPARE
+	current_action = Action.PREPARE
 	target_position = _target_position
 	state_machine.change_to("run")
 
@@ -59,14 +58,14 @@ func update_animation(animation: String) -> void:
 
 func _on_state_finished(state_outcome: PlayerStateOutcome) -> void:
 	match state_outcome.action:
-		ACTION.IDLE:
+		Action.IDLE:
 			pass
-		ACTION.PREPARE:
+		Action.PREPARE:
 			state_machine.change_to("idle")
 			state_finished.emit(state_outcome)
-		ACTION.HIT_AND_RUN:
+		Action.HIT_AND_RUN:
 			state_machine.change_to("hit")
-		ACTION.END:
+		Action.END:
 			pass
 		_:
 			pass

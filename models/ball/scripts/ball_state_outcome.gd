@@ -1,12 +1,12 @@
 class_name BallStateOutcome extends StateOutcome
 
-var action: Ball.ACTION
+var action: Ball.Action
 
 var ball_destination_position: Vector2
 
 
 static func run_outcome(
-	_action: Ball.ACTION, _ball_destination_position: Vector2
+	_action: Ball.Action, _ball_destination_position: Vector2
 ) -> BallStateOutcome:
 	var outcome = BallStateOutcome.new()
 	outcome.action = _action

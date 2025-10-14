@@ -45,9 +45,9 @@ func pass_process(_delta: float) -> State:
 
 func _on_ball_state_finished(state_outcome: BallStateOutcome) -> void:
 	match state_outcome.action:
-		Ball.ACTION.PREPARE:
+		Ball.Action.PREPARE:
 			processing_done["ball"] = true
-		Ball.ACTION.RUN:
+		Ball.Action.RUN:
 			point.receive_player.hit_and_run(state_outcome.ball_destination_position)
 		_:
 			pass
@@ -55,9 +55,9 @@ func _on_ball_state_finished(state_outcome: BallStateOutcome) -> void:
 
 func _on_player_state_finished(player_state_outcome: PlayerStateOutcome) -> void:
 	match player_state_outcome.action:
-		Player.ACTION.PREPARE:
+		Player.Action.PREPARE:
 			processing_done["%s_player" % player_state_outcome.home_or_away] = true
-		Player.ACTION.HIT_AND_RUN:
+		Player.Action.HIT_AND_RUN:
 			match player_state_outcome.hit_result:
 				PlayerHit.HIT_RESULT.HIT:
 					point.ball.run(player_state_outcome.desire_ball_position)

@@ -33,7 +33,7 @@ func pass_process(_delta: float) -> State:
 
 func _on_point_finished(point_state_outcome: PointStateOutcome) -> void:
 	match point_state_outcome.action:
-		Point.ACTION.END:
+		Point.Action.END:
 			pass
 		_:
 			pass

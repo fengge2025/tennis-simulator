@@ -28,7 +28,7 @@ func process(delta: float) -> State:
 
 func _on_point_finished(point_state_outcome: PointStateOutcome) -> void:
 	match point_state_outcome.action:
-		Point.ACTION.END:
+		Point.Action.END:
 			game.score.player_score(point_state_outcome.score_home_or_away)
 
 			update_score.emit()
