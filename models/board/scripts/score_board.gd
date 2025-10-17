@@ -57,6 +57,6 @@ func _get_tennis_display_score(score: int, opponent_score: int) -> String:
 		_:
 			if score == opponent_score:
 				return "40"
-			elif score < opponent_score:
+			if score < opponent_score:
 				return ""
 			return "ad"
