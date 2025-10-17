@@ -1,6 +1,7 @@
 class_name GameState extends State
 
 signal state_finished(state_outcome: GameStateOutcome)
+
 var game: Game
 var processing_done: Dictionary = {}
 
@@ -17,7 +18,7 @@ func wait_process(_delta: float) -> State:
 	if state_processing:
 		pass
 	else:
-		var state_outcome = GameStateOutcome.new()
+		var state_outcome: GameStateOutcome = GameStateOutcome.new()
 		state_finished.emit(state_outcome)
 	return null
 
@@ -26,7 +27,7 @@ func pass_process(_delta: float) -> State:
 	if state_processing:
 		state_processing = false
 	else:
-		var state_outcome = GameStateOutcome.new()
+		var state_outcome: GameStateOutcome = GameStateOutcome.new()
 		state_finished.emit(state_outcome)
 	return null
 

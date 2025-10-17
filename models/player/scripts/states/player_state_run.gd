@@ -19,8 +19,8 @@ func exit() -> void:
 
 func process(delta: float) -> State:
 	if state_processing:
-		var direction = (player.target_position - player.position).normalized()
-		var distance = player.position.distance_to(player.target_position)
+		var direction: Vector2 = (player.target_position - player.position).normalized()
+		var distance: float = player.position.distance_to(player.target_position)
 
 		if distance > speed * delta:
 			player.position += direction * speed * delta
@@ -28,7 +28,7 @@ func process(delta: float) -> State:
 			player.position = player.target_position
 			state_processing = false
 	else:
-		var state_outcome = PlayerStateOutcome.run_outcome(
+		var state_outcome: PlayerStateOutcome = PlayerStateOutcome.run_outcome(
 			player.current_action, player.home_or_away
 		)
 		state_finished.emit(state_outcome)

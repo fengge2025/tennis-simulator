@@ -15,8 +15,8 @@ func exit() -> void:
 
 func process(delta: float) -> State:
 	if state_processing:
-		var direction = (ball.target_position - ball.position).normalized()
-		var distance = ball.position.distance_to(ball.target_position)
+		var direction: Vector2 = (ball.target_position - ball.position).normalized()
+		var distance: float = ball.position.distance_to(ball.target_position)
 
 		if distance > speed * delta:
 			ball.position += direction * speed * delta
@@ -24,6 +24,6 @@ func process(delta: float) -> State:
 			ball.position = ball.target_position
 			state_processing = false
 	else:
-		var state_outcome = BallStateOutcome.run_outcome(ball.current_action, ball.target_position)
+		var state_outcome: BallStateOutcome = BallStateOutcome.run_outcome(ball.current_action, ball.target_position)
 		state_finished.emit(state_outcome)
 	return null

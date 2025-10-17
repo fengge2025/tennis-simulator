@@ -34,5 +34,5 @@ func change_state(new_state: State) -> void:
 
 
 func change_to(state_name: String) -> void:
-	var state = states[state_name]
+	var state: State = states[state_name]
 	change_state(state)

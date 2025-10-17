@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3y2g0hb75x84"]
+
+[ext_resource type="Script" path="res://scenes/playgrounds/scripts/set_playground.gd" id="1_qpf3r"]
+[ext_resource type="PackedScene" uid="uid://s4q8h48y8l4u" path="res://models/ball/ball.tscn" id="2_mu00q"]
+[ext_resource type="PackedScene" uid="uid://c7ysh8prm1be3" path="res://models/player/player.tscn" id="3_ldg7w"]
+[ext_resource type="PackedScene" uid="uid://b7qwq76fes3u1" path="res://models/banner/banner.tscn" id="4_jhfb8"]
+[ext_resource type="PackedScene" uid="uid://c6e24b3cqp0o8" path="res://models/board/score_board.tscn" id="5_64j7l"]
+[ext_resource type="PackedScene" uid="uid://bkjkijr8u0x32" path="res://models/tennis_set/tennis_set.tscn" id="6_5y8jw"]
+
+[node name="SetPlayground" type="Node2D"]
+script = ExtResource("1_qpf3r")
+
+[node name="Ball" parent="." instance=ExtResource("2_mu00q")]
+
+[node name="PlayerHome" parent="." instance=ExtResource("3_ldg7w")]
+
+[node name="PlayerAway" parent="." instance=ExtResource("3_ldg7w")]
+home_or_away = "away"
+color = Color(1, 0, 1, 1)
+
+[node name="Banner" parent="." instance=ExtResource("4_jhfb8")]
+
+[node name="ScoreBoard" parent="." instance=ExtResource("5_64j7l")]
+
+[node name="TennisSet" parent="." instance=ExtResource("6_5y8jw")]

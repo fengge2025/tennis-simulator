@@ -9,6 +9,6 @@ func process(_delta: float) -> State:
 	if state_processing:
 		pass
 	else:
-		var state_outcome = PlayerStateOutcome.new()
+		var state_outcome: PlayerStateOutcome = PlayerStateOutcome.new()
 		state_finished.emit(state_outcome)
 	return null

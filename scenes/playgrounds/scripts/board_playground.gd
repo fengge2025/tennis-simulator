@@ -1,5 +1,9 @@
 extends Node2D
 
+var score: ScoreBoard.Score
+var idx: int = 0
+var home_or_away: Array[String] = ["home", "away"]
+
 @onready var score_board: ScoreBoard = $ScoreBoard
 @onready var timer: Timer = $Timer
 
@@ -7,12 +11,15 @@ extends Node2D
 func _ready() -> void:
 	timer.timeout.connect(on_timer_timeout)
 
-	var score = ScoreBoard.Score.init(10, 11)
+	score = ScoreBoard.Score.init(0, 0)
 	score_board.update_score_board(score)
 
-	timer.start(2)
+	timer.start(1)
 
 
-func on_timer_timeout():
-	var score = ScoreBoard.Score.init(100, 110)
+func on_timer_timeout() -> void:
+	score.player_score(home_or_away[idx])
+	idx ^= 1
 	score_board.update_score_board(score)
+	#timer.stop()
+	timer.start(1)

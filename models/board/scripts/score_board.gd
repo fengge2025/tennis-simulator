@@ -1,17 +1,23 @@
 class_name ScoreBoard extends Node2D
 
+var score_mapping: Dictionary = {
+	0: "0",
+	1: "15",
+	2: "30",
+	3: "40"
+}
+
 @onready var home_name: Label = $GridContainer/HomeName
 @onready var away_name: Label = $GridContainer/AwayName
 @onready var home_score: Label = $GridContainer/HomeScore
 @onready var away_score: Label = $GridContainer/AwayScore
-
 
 class Score:
 	var home_score: int = 0
 	var away_score: int = 0
 
 	static func init(_home_score: int, _away_score: int) -> Score:
-		var score = Score.new()
+		var score: Score = Score.new()
 		score.home_score = _home_score
 		score.away_score = _away_score
 		return score
@@ -36,5 +42,25 @@ func reset_score_board() -> void:
 
 
 func update_score_board(score: Score) -> void:
-	home_score.text = str(score.home_score)
-	away_score.text = str(score.away_score)
+	home_score.text = _get_tennis_display_score(score.home_score, score.away_score)
+	away_score.text = _get_tennis_display_score(score.away_score, score.home_score)
+
+
+func _get_tennis_display_score(score: int, opponent_score: int) -> String:
+	match score:
+		0:
+			return "0"
+		1:
+			return "15"
+		2:
+			return "30"
+		3:
+			if opponent_score <= 3:
+				return "40"
+			return ""
+		_:
+			if score == opponent_score:
+				return "40"
+			elif score < opponent_score:
+				return ""
+			return "ad"

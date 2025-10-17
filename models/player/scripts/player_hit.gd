@@ -14,7 +14,7 @@ func _init(_match_configs: MatchConfig, _player_stat: PlayerStat) -> void:
 
 
 func get_hit_desire_position() -> Vector2:
-	var rand_vec = Vector2(
+	var rand_vec: Vector2 = Vector2(
 		randf_range(match_configs["hit_x_min"], match_configs["hit_x_max"]),
 		randf_range(match_configs["hit_y_min"], match_configs["hit_y_max"])
 	)

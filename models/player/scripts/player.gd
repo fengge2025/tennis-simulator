@@ -74,7 +74,7 @@ func _on_state_finished(state_outcome: PlayerStateOutcome) -> void:
 func _on_animation_finished(animation_name: String) -> void:
 	match animation_name:
 		"hit":
-			var state_outcome = PlayerStateOutcome.hit_outcome(
+			var state_outcome: PlayerStateOutcome = PlayerStateOutcome.hit_outcome(
 				current_action,
 				home_or_away,
 				player_hit.get_hit_result(),

@@ -35,6 +35,6 @@ func process(_delta: float) -> State:
 		if not false in processing_done.values():
 			state_processing = false
 	else:
-		var state_outcome = PointStateOutcome.prepare_outcome(point.current_action)
+		var state_outcome: PointStateOutcome = PointStateOutcome.prepare_outcome(point.current_action)
 		state_finished.emit(state_outcome)
 	return null

@@ -63,7 +63,7 @@ func _on_player_state_finished(player_state_outcome: PlayerStateOutcome) -> void
 					point.ball.run(player_state_outcome.desire_ball_position)
 					_swap_players()
 				PlayerHit.HitResult.MISS:
-					var state_outcome = PointStateOutcome.hit_outcome(
+					var state_outcome: PointStateOutcome = PointStateOutcome.hit_outcome(
 						point.current_action,
 						player_scored_mapping[player_state_outcome.home_or_away]
 					)
@@ -78,5 +78,5 @@ func _on_banner_animation_finished(_animation_name: String) -> void:
 	processing_done["banner"] = true
 
 
-func _swap_players():
+func _swap_players() -> void:
 	point.receive_turn ^= 1
