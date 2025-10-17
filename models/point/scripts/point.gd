@@ -40,6 +40,7 @@ var receive_player: Player:
 
 @onready var state_machine: PointStateMachine = $PointStateMachine
 
+
 func initialize(_banner: Banner, _ball: Ball, _home_player: Player, _away_player: Player) -> void:
 	banner = _banner
 	ball = _ball

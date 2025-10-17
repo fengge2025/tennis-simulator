@@ -12,6 +12,7 @@ var current_action: Action = Action.IDLE
 @onready var state_machine: BallStateMachine = $BallStateMachine
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+
 func prepare(_target_position: Vector2) -> void:
 	current_action = Action.PREPARE
 	_run_handler(_target_position)

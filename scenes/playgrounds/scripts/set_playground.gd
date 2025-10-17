@@ -15,6 +15,5 @@ func _ready() -> void:
 
 	tennis_set.start_set()
 
-
 #func _on_game_update_score(score: ScoreBoard.Score) -> void:
-	#score_board.update_score_board(score)
+#score_board.update_score_board(score)

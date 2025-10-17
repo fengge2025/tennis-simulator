@@ -24,6 +24,8 @@ func process(delta: float) -> State:
 			ball.position = ball.target_position
 			state_processing = false
 	else:
-		var state_outcome: BallStateOutcome = BallStateOutcome.run_outcome(ball.current_action, ball.target_position)
+		var state_outcome: BallStateOutcome = BallStateOutcome.run_outcome(
+			ball.current_action, ball.target_position
+		)
 		state_finished.emit(state_outcome)
 	return null

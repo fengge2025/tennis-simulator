@@ -23,6 +23,7 @@ var player_hit: PlayerHit
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var label: Label = $Label
 
+
 func hit_and_run(_target_position: Vector2) -> void:
 	current_action = Action.HIT_AND_RUN
 	target_position = _target_position

@@ -21,8 +21,10 @@ var score: ScoreBoard.Score
 @onready var state_machine: TennisSetStateMachine = $TennisSetStateMachine
 @onready var game: Game = $Game
 
+
 func _ready() -> void:
 	pass
+
 
 func initialize(_banner: Banner, _ball: Ball, _home_player: Player, _away_player: Player) -> void:
 	banner = _banner
@@ -44,8 +46,10 @@ func initialize(_banner: Banner, _ball: Ball, _home_player: Player, _away_player
 func start_set() -> void:
 	state_machine.change_to("start")
 
+
 func _on_start_finished(_state_outcome: TennisSetStateOutcome) -> void:
 	state_machine.change_to("play")
+
 
 func _on_play_finished(_state_outcome: TennisSetStateOutcome) -> void:
 	state_machine.change_to("end")

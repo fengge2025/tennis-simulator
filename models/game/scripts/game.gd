@@ -23,6 +23,7 @@ var score: ScoreBoard.Score
 @onready var state_machine: GameStateMachine = $GameStateMachine
 @onready var point: Point = $Point
 
+
 func initialize(_banner: Banner, _ball: Ball, _home_player: Player, _away_player: Player) -> void:
 	banner = _banner
 	ball = _ball
