@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8hdbltbg80rl"]
+
+[ext_resource type="Script" path="res://bgm/scripts/bgm_player.gd" id="1_qpt6w"]
+[ext_resource type="AudioStream" uid="uid://tab0xdetm3vy" path="res://bgm/assets/music/Canon_in_C_2.wav" id="3_edldf"]
+[ext_resource type="AudioStream" uid="uid://dn1vouqxtsmjn" path="res://bgm/assets/music/An_die_Freude_2.wav" id="3_j4hnl"]
+
+[node name="BGMPlayer" type="Node2D"]
+script = ExtResource("1_qpt6w")
+bgm_list = Array[AudioStream]([ExtResource("3_edldf"), ExtResource("3_j4hnl")])
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
