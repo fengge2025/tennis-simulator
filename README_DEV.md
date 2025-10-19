@@ -30,7 +30,7 @@
 - [] 两只老虎
 - [] 拔萝卜
 - [] 小星星
-
+- [] 上学歌
 ## sound
 
 # auxiliary function
