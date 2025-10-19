@@ -1,7 +1,5 @@
 class_name State extends Node
 
-var state_name: String
-
 var state_machine: StateMachine
 var state_processing: bool = false
 

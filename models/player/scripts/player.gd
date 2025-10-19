@@ -27,13 +27,13 @@ var player_hit: PlayerHit
 func hit_and_run(_target_position: Vector2) -> void:
 	current_action = Action.HIT_AND_RUN
 	target_position = _target_position
-	state_machine.change_to("run")
+	state_machine.change_to(1)
 
 
 func prepare(_target_position: Vector2) -> void:
 	current_action = Action.PREPARE
 	target_position = _target_position
-	state_machine.change_to("run")
+	state_machine.change_to(2)
 
 
 func _ready() -> void:
@@ -62,10 +62,10 @@ func _on_state_finished(state_outcome: PlayerStateOutcome) -> void:
 		Action.IDLE:
 			pass
 		Action.PREPARE:
-			state_machine.change_to("idle")
+			state_machine.change_to(1)
 			state_finished.emit(state_outcome)
 		Action.HIT_AND_RUN:
-			state_machine.change_to("hit")
+			state_machine.change_to(1)
 		Action.END:
 			pass
 		_:

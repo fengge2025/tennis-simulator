@@ -33,6 +33,6 @@ func change_state(new_state: State) -> void:
 	current_state.enter()
 
 
-func change_to(state_name: String) -> void:
+func change_to(state_name: int) -> void:
 	var state: State = states[state_name]
 	change_state(state)

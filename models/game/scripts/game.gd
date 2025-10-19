@@ -44,11 +44,11 @@ func initialize(_banner: Banner, _ball: Ball, _home_player: Player, _away_player
 
 
 func start_game() -> void:
-	state_machine.change_to("start")
+	state_machine.change_to(1)
 
 
 func _on_start_finished(_state_outcome: GameStateOutcome) -> void:
-	state_machine.change_to("play")
+	state_machine.change_to(2)
 
 
 func _on_play_finished(_state_outcome: GameStateOutcome) -> void:

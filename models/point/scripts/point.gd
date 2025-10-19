@@ -55,7 +55,7 @@ func initialize(_banner: Banner, _ball: Ball, _home_player: Player, _away_player
 
 func start_point() -> void:
 	current_action = Action.PREPARE
-	state_machine.change_to("prepare")
+	state_machine.change_to(1)
 
 
 func _ready() -> void:
@@ -64,15 +64,15 @@ func _ready() -> void:
 
 func _on_prepare_finished(_state_outcome: PointStateOutcome) -> void:
 	current_action = Action.HIT
-	state_machine.change_to("hit")
+	state_machine.change_to(1)
 
 
 func _on_hit_finished(state_outcome: PointStateOutcome) -> void:
 	score_home_or_away = state_outcome.score_home_or_away
 	current_action = Action.END
-	state_machine.change_to("end")
+	state_machine.change_to(1)
 
 
 func _on_end_finished(state_outcome: PointStateOutcome) -> void:
-	state_machine.change_to("idle")
+	state_machine.change_to(1)
 	state_finished.emit(state_outcome)

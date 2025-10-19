@@ -61,8 +61,6 @@ script = ExtResource("3_f76yd")
 
 [node name="BallStateRun" type="Node" parent="BallStateMachine"]
 script = ExtResource("4_ojb8j")
-state_name = "run"
 
 [node name="BallStateIdle" type="Node" parent="BallStateMachine"]
 script = ExtResource("5_cc5cv")
-state_name = "idle"

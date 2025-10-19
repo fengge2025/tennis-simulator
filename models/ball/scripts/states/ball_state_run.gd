@@ -2,6 +2,8 @@ class_name BallStateRun extends BallState
 
 var speed: float = 200.0
 
+func _ready() -> void:
+	state_name = Ball.StateName.RUN
 
 func enter() -> void:
 	ball.logger.log("ball enter run")
@@ -24,8 +26,10 @@ func process(delta: float) -> State:
 			ball.position = ball.target_position
 			state_processing = false
 	else:
-		var state_outcome: BallStateOutcome = BallStateOutcome.run_outcome(
-			ball.current_action, ball.target_position
+		var state_outcome: BallOutcome = BallOutcome.state_run_outcome(
+			ball.current_action,
+			state_name, ball.target_position
 		)
 		state_finished.emit(state_outcome)
+		return 
 	return null

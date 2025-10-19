@@ -1,5 +1,7 @@
 class_name BallStateIdle extends BallState
 
+func _ready() -> void:
+	state_name = Ball.StateName.IDLE
 
 func enter() -> void:
 	ball.logger.log("ball enter idle")
@@ -11,5 +13,5 @@ func exit() -> void:
 	state_processing = false
 
 
-func process(_delta: float) -> State:
-	return null
+func process(delta: float) -> State:
+	return wait_process(delta)
