@@ -9,3 +9,4 @@ script = ExtResource("1_qpt6w")
 bgm_list = Array[AudioStream]([ExtResource("3_edldf"), ExtResource("3_j4hnl")])
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -10.0
