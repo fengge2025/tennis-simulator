@@ -53,7 +53,7 @@ func _on_ball_state_finished(state_outcome: BallStateOutcome) -> void:
 			pass
 
 
-func _on_player_state_finished(player_state_outcome: PlayerStateOutcome) -> void:
+func _on_player_state_finished(player_state_outcome: PlayerOutcome) -> void:
 	match player_state_outcome.action:
 		Player.Action.PREPARE:
 			processing_done["%s_player" % player_state_outcome.home_or_away] = true

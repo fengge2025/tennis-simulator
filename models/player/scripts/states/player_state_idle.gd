@@ -4,13 +4,17 @@ class_name PlayerStateIdle extends PlayerState
 
 
 func _ready() -> void:
-	state_name = "idle"
+	state_name = Player.StateName.IDLE
 
 
 func enter() -> void:
 	player.logger.log("player enter idle")
 	player.update_animation("idle")
 	state_processing = true
+
+
+func reenter() -> void:
+	player.logger.log("player reenter idle")
 
 
 func exit() -> void:

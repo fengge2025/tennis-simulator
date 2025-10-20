@@ -5,6 +5,7 @@ signal state_finished(state_outcome: BallOutcome)
 var state_name: Ball.StateName
 var ball: Ball
 
+
 func wait_process(_delta: float) -> State:
 	if state_processing:
 		pass

@@ -1,15 +1,16 @@
 class_name Player extends Node2D
 
-signal state_finished(state_outcome: PlayerStateOutcome)
+signal action_finished(action_outcome: PlayerOutcome)
 
-enum Action { IDLE, PREPARE, HIT_AND_RUN, END }
+enum ActionName { IDLE, PREPARE, HIT_AND_RUN, END }
+enum StateName { IDLE, RUN, HIT }
 
 @export_enum("home", "away") var home_or_away: String = "home"
 @export var color: Color = Color.WHITE
 
 var logger: Logger = Logger.initialize("player")
 
-var current_action: Action = Action.IDLE
+var current_action: ActionName = ActionName.IDLE
 
 var match_configs: MatchConfig
 
@@ -24,16 +25,18 @@ var player_hit: PlayerHit
 @onready var label: Label = $Label
 
 
-func hit_and_run(_target_position: Vector2) -> void:
-	current_action = Action.HIT_AND_RUN
-	target_position = _target_position
-	state_machine.change_to(1)
+func hit_and_run_action(_target_position: Vector2) -> void:
+	current_action = ActionName.HIT_AND_RUN
+	_run_handler(_target_position)
 
 
-func prepare(_target_position: Vector2) -> void:
-	current_action = Action.PREPARE
-	target_position = _target_position
-	state_machine.change_to(2)
+func prepare_action(_target_position: Vector2) -> void:
+	current_action = ActionName.PREPARE
+	_run_handler(_target_position)
+
+
+func update_animation(animation: String) -> void:
+	animation_player.play(animation)
 
 
 func _ready() -> void:
@@ -48,26 +51,32 @@ func _ready() -> void:
 	player_hit = PlayerHit.new(match_configs, player_stat)
 
 	state_machine.initialize(self)
-	state_machine.states["run"].state_finished.connect(_on_state_finished)
+	state_machine.states[StateName.RUN].state_finished.connect(_on_run_state_finished)
 
 	animation_player.animation_finished.connect(_on_animation_finished)
 
 
-func update_animation(animation: String) -> void:
-	animation_player.play(animation)
+func _run_handler(_target_position: Vector2) -> void:
+	target_position = _target_position
+	state_machine.change_to(StateName.RUN)
 
 
-func _on_state_finished(state_outcome: PlayerStateOutcome) -> void:
-	match state_outcome.action:
-		Action.IDLE:
+func _on_run_state_finished(state_outcome: PlayerOutcome) -> void:
+	match state_outcome.state_name:
+		StateName.IDLE:
 			pass
-		Action.PREPARE:
-			state_machine.change_to(1)
-			state_finished.emit(state_outcome)
-		Action.HIT_AND_RUN:
-			state_machine.change_to(1)
-		Action.END:
-			pass
+		StateName.RUN:
+			match state_outcome.action_name:
+				ActionName.PREPARE:
+					state_machine.change_to(StateName.IDLE)
+					var action_outcome: PlayerOutcome = PlayerOutcome.action_run_outcome(
+						state_outcome.action_name
+					)
+					action_finished.emit(action_outcome)
+				ActionName.HIT_AND_RUN:
+					state_machine.change_to(StateName.HIT)
+				_:
+					pass
 		_:
 			pass
 
@@ -75,12 +84,9 @@ func _on_state_finished(state_outcome: PlayerStateOutcome) -> void:
 func _on_animation_finished(animation_name: String) -> void:
 	match animation_name:
 		"hit":
-			var state_outcome: PlayerStateOutcome = PlayerStateOutcome.hit_outcome(
-				current_action,
-				home_or_away,
-				player_hit.get_hit_result(),
-				player_hit.get_hit_desire_position()
+			var action_outcome: PlayerOutcome = PlayerOutcome.action_hit_and_run_outcome(
+				current_action
 			)
-			state_finished.emit(state_outcome)
+			action_finished.emit(action_outcome)
 		_:
 			pass

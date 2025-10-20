@@ -2,9 +2,9 @@ extends Node
 
 @export var bgm_list: Array[AudioStream] = []
 
-@onready var player: AudioStreamPlayer2D = $AudioStreamPlayer2D
-
 var current_index: int = 0
+
+@onready var player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 
 func _ready() -> void:
