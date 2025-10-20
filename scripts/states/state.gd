@@ -7,10 +7,11 @@ var state_processing: bool = false
 func _ready() -> void:
 	state_machine = $".."
 
-
 func enter() -> void:
 	state_processing = true
-
+	
+func reenter() -> void:
+	state_processing = true
 
 func exit() -> void:
 	state_processing = false

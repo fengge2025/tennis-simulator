@@ -38,7 +38,6 @@ func update_animation(animation: String) -> void:
 
 func _run_handler(_target_position: Vector2) -> void:
 	target_position = _target_position
-	state_machine.states[StateName.RUN].state_processing = true
 	state_machine.change_to(StateName.RUN)
 
 func _on_run_state_finished(state_outcome: BallOutcome) -> void:

@@ -22,7 +22,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func change_state(new_state: State) -> void:
-	if new_state == null || new_state == current_state:
+	if new_state == null:
+		return
+	
+	if new_state == current_state:
+		current_state.reenter()
 		return
 
 	if current_state:

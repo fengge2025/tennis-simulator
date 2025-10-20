@@ -9,7 +9,9 @@ func enter() -> void:
 	ball.logger.log("ball enter run")
 	ball.update_animation("run")
 	state_processing = true
-
+	
+func reenter() -> void:
+	ball.logger.log("ball reenter run")
 
 func exit() -> void:
 	state_processing = false
