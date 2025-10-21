@@ -70,6 +70,6 @@ func load_match_config() -> void:
 	away.hit_y_max = territory_home_y_max
 	away.loaded = true
 
-	match_configs["home"] = home
-	match_configs["away"] = away
+	match_configs[Player.HomeOrAway.HOME] = home
+	match_configs[Player.HomeOrAway.AWAY] = away
 	match_configs_loaded = true

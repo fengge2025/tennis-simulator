@@ -7,5 +7,5 @@ func initialize(point: Point) -> void:
 			c.point = point
 			states[c.state_name] = c
 
-	change_state(states["idle"])
+	change_state(states[Point.StateName.IDLE])
 	process_mode = Node.PROCESS_MODE_INHERIT

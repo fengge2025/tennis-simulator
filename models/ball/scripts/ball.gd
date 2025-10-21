@@ -17,6 +17,14 @@ var target_position: Vector2 = Vector2.ZERO
 func prepare_action(_target_position: Vector2) -> void:
 	current_action = ActionName.PREPARE
 	_run_handler(_target_position)
+	
+
+func get_prepare_target_position() -> Vector2:
+	var rand_vec: Vector2 = Vector2(
+		randf_range(150, 250),
+		randf_range(150, 250)
+	)
+	return rand_vec
 
 
 func run_action(_target_position: Vector2) -> void:
@@ -52,12 +60,14 @@ func _on_run_state_finished(state_outcome: BallOutcome) -> void:
 			match state_outcome.action_name:
 				ActionName.PREPARE:
 					var action_outcome: BallOutcome = BallOutcome.action_run_outcome(
-						state_outcome.action_name
+						state_outcome.action_name,
+						target_position
 					)
 					action_finished.emit(action_outcome)
 				ActionName.RUN:
 					var action_outcome: BallOutcome = BallOutcome.action_run_outcome(
-						state_outcome.action_name
+						state_outcome.action_name,
+						target_position
 					)
 					action_finished.emit(action_outcome)
 				_:

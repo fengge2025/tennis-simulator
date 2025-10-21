@@ -1,14 +1,16 @@
 class_name PointStateIdle extends PointState
 
-
 func _ready() -> void:
-	state_name = "idle"
-
+	state_name = Point.StateName.IDLE
 
 func enter() -> void:
 	point.logger.log("point enter idle")
 	state_processing = true
 
+func reenter() -> void:
+	point.logger.log("point reenter idle")
+
+	connect_on_state_finished()
 
 func exit() -> void:
 	state_processing = false

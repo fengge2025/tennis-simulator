@@ -26,7 +26,7 @@ func process(delta: float) -> State:
 	return wait_process(delta)
 
 
-func _on_point_finished(point_state_outcome: PointStateOutcome) -> void:
+func _on_point_finished(point_state_outcome: PointOutcome) -> void:
 	match point_state_outcome.action:
 		Point.Action.END:
 			game.score.player_score(point_state_outcome.score_home_or_away)

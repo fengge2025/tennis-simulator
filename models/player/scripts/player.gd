@@ -4,9 +4,10 @@ signal action_finished(action_outcome: PlayerOutcome)
 
 enum ActionName { IDLE, PREPARE, HIT_AND_RUN, END }
 enum StateName { IDLE, RUN, HIT }
+enum HomeOrAway {HOME, AWAY}
 
-@export_enum("home", "away") var home_or_away: String = "home"
 @export var color: Color = Color.WHITE
+@export var home_or_away: HomeOrAway = HomeOrAway.HOME
 
 var logger: Logger = Logger.initialize("player")
 
@@ -33,6 +34,13 @@ func hit_and_run_action(_target_position: Vector2) -> void:
 func prepare_action(_target_position: Vector2) -> void:
 	current_action = ActionName.PREPARE
 	_run_handler(_target_position)
+	
+func get_prepare_target_position() -> Vector2:
+	var rand_vec: Vector2 = Vector2(
+		randf_range(match_configs["run_x_min"], match_configs["run_x_max"]),
+		randf_range(match_configs["run_y_min"], match_configs["run_y_max"])
+	)
+	return rand_vec
 
 
 func update_animation(animation: String) -> void:
@@ -40,7 +48,7 @@ func update_animation(animation: String) -> void:
 
 
 func _ready() -> void:
-	label.text = home_or_away
+	label.text = str(home_or_away)
 	sprite_2d.modulate = color
 
 	match_configs = LoadConfigs.match_configs.get(home_or_away)
@@ -69,8 +77,9 @@ func _on_run_state_finished(state_outcome: PlayerOutcome) -> void:
 			match state_outcome.action_name:
 				ActionName.PREPARE:
 					state_machine.change_to(StateName.IDLE)
-					var action_outcome: PlayerOutcome = PlayerOutcome.action_run_outcome(
-						state_outcome.action_name
+					var action_outcome: PlayerOutcome = PlayerOutcome.action_prepare_outcome(
+						state_outcome.action_name,
+						home_or_away
 					)
 					action_finished.emit(action_outcome)
 				ActionName.HIT_AND_RUN:
@@ -85,7 +94,7 @@ func _on_animation_finished(animation_name: String) -> void:
 	match animation_name:
 		"hit":
 			var action_outcome: PlayerOutcome = PlayerOutcome.action_hit_and_run_outcome(
-				current_action
+				current_action, player_hit.get_hit_result(), player_hit.get_hit_desire_position()
 			)
 			action_finished.emit(action_outcome)
 		_:

@@ -1,22 +1,13 @@
 class_name Point extends Node2D
 
-signal state_finished(state_outcome: PointStateOutcome)
+signal state_finished(state_outcome: PointOutcome)
 
-enum Action {
-	IDLE,
-	PREPARE,
-	HIT,
-	END,
-}
-
-enum PointResult {
-	HOME_PLAYER_SCORED,
-	AWAY_PLAYER_SCORED,
-}
+enum ActionName { IDLE, START_POINT, PLAY, END }
+enum StateName { IDLE, PREPARE, PLAY, END }
 
 var logger: Logger = Logger.initialize("point")
 
-var current_action: Action = Action.IDLE
+var current_action: ActionName = ActionName.IDLE
 
 var ball: Ball
 var banner: Banner
@@ -48,31 +39,31 @@ func initialize(_banner: Banner, _ball: Ball, _home_player: Player, _away_player
 	away_player = _away_player
 	state_machine.initialize(self)
 
-	state_machine.states["prepare"].state_finished.connect(_on_prepare_finished)
-	state_machine.states["hit"].state_finished.connect(_on_hit_finished)
-	state_machine.states["end"].state_finished.connect(_on_end_finished)
+	state_machine.states[Point.StateName.PREPARE].state_finished.connect(_on_prepare_state_finished)
+	state_machine.states[Point.StateName.PLAY].state_finished.connect(_on_play_state_finished)
+	state_machine.states[Point.StateName.END].state_finished.connect(_on_end_state_finished)
 
 
-func start_point() -> void:
-	current_action = Action.PREPARE
-	state_machine.change_to(1)
+func start_point_action() -> void:
+	current_action = ActionName.START_POINT
+	state_machine.change_to(Point.StateName.PREPARE)
 
 
 func _ready() -> void:
 	pass
 
 
-func _on_prepare_finished(_state_outcome: PointStateOutcome) -> void:
-	current_action = Action.HIT
-	state_machine.change_to(1)
+func _on_prepare_state_finished(_state_outcome: PointOutcome) -> void:
+	current_action = ActionName.PLAY
+	state_machine.change_to(Point.StateName.PLAY)
 
 
-func _on_hit_finished(state_outcome: PointStateOutcome) -> void:
+func _on_play_state_finished(state_outcome: PointOutcome) -> void:
 	score_home_or_away = state_outcome.score_home_or_away
-	current_action = Action.END
+	current_action = ActionName.END
 	state_machine.change_to(1)
 
 
-func _on_end_finished(state_outcome: PointStateOutcome) -> void:
+func _on_end_state_finished(state_outcome: PointOutcome) -> void:
 	state_machine.change_to(1)
 	state_finished.emit(state_outcome)

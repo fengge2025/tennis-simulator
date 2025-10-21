@@ -2,7 +2,7 @@ class_name PointStatePrepare extends PointState
 
 
 func _ready() -> void:
-	state_name = "prepare"
+	state_name = Point.StateName.PREPARE
 
 
 func enter() -> void:
@@ -11,17 +11,22 @@ func enter() -> void:
 
 	processing_done = {
 		"ball": false,
-		"home_player": false,
-		"away_player": false,
+		Player.HomeOrAway.HOME: false,
+		Player.HomeOrAway.AWAY: false,
 		"banner": false,
 	}
 
 	self.connect_on_state_finished()
 
-	point.ball.prepare(Vector2(200, 200))
-	point.hit_player.prepare(Vector2(100, 100))
-	point.receive_player.prepare(Vector2(300, 300))
+	point.ball.prepare_action(point.ball.get_prepare_target_position())
+	point.hit_player.prepare_action(point.hit_player.get_prepare_target_position())
+	point.receive_player.prepare_action(point.receive_player.get_prepare_target_position())
 	point.banner.display_banner("start")
+
+func reenter() -> void:
+	point.logger.log("point reenter prepare")
+
+	connect_on_state_finished()
 
 
 func exit() -> void:
@@ -34,9 +39,29 @@ func process(_delta: float) -> State:
 	if state_processing:
 		if not false in processing_done.values():
 			state_processing = false
+			return null
 	else:
-		var state_outcome: PointStateOutcome = PointStateOutcome.prepare_outcome(
-			point.current_action
+		var state_outcome: PointOutcome = PointOutcome.state_prepare_outcome(
+			point.current_action, state_name
 		)
 		state_finished.emit(state_outcome)
 	return null
+	
+	
+func _on_ball_action_finished(state_outcome: BallOutcome) -> void:
+	match state_outcome.action_name:
+		Ball.ActionName.PREPARE:
+			processing_done["ball"] = true
+		_:
+			pass
+			
+func _on_player_action_finished(player_state_outcome: PlayerOutcome) -> void:
+	match player_state_outcome.action_name:
+		Player.ActionName.PREPARE:
+			processing_done[player_state_outcome.home_or_away] = true
+			pass
+		_:
+			pass
+
+func _on_banner_animation_finished(_animation_name: String) -> void:
+	processing_done["banner"] = true
