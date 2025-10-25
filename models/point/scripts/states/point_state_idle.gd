@@ -10,8 +10,6 @@ func enter() -> void:
 func reenter() -> void:
 	point.logger.log("point reenter idle")
 
-	connect_on_state_finished()
-
 func exit() -> void:
 	state_processing = false
 

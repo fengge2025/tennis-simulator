@@ -5,15 +5,6 @@ signal state_finished(state_outcome: TennisSetStateOutcome)
 var tennis_set: TennisSet
 var processing_done: Dictionary = {}
 
-
-func connect_on_state_finished() -> void:
-	pass
-
-
-func disconnect_on_state_finished() -> void:
-	pass
-
-
 func wait_process(_delta: float) -> State:
 	if state_processing:
 		pass

@@ -16,7 +16,10 @@ func enter() -> void:
 		"banner": false,
 	}
 
-	self.connect_on_state_finished()
+	point.ball.action_finished.connect(_on_ball_action_finished)
+	point.receive_player.action_finished.connect(_on_player_action_finished)
+	point.hit_player.action_finished.connect(_on_player_action_finished)
+	point.banner.animation_finished.connect(_on_banner_animation_finished)
 
 	point.ball.prepare_action(point.ball.get_prepare_target_position())
 	point.hit_player.prepare_action(point.hit_player.get_prepare_target_position())
@@ -26,13 +29,19 @@ func enter() -> void:
 func reenter() -> void:
 	point.logger.log("point reenter prepare")
 
-	connect_on_state_finished()
+	point.ball.action_finished.connect(_on_ball_action_finished)
+	point.receive_player.action_finished.connect(_on_player_action_finished)
+	point.hit_player.action_finished.connect(_on_player_action_finished)
+	point.banner.animation_finished.connect(_on_banner_animation_finished)
 
 
 func exit() -> void:
 	state_processing = false
 
-	self.disconnect_on_state_finished()
+	point.ball.action_finished.disconnect(_on_ball_action_finished)
+	point.receive_player.action_finished.disconnect(_on_player_action_finished)
+	point.hit_player.action_finished.disconnect(_on_player_action_finished)
+	point.banner.animation_finished.disconnect(_on_banner_animation_finished)
 
 
 func process(_delta: float) -> State:

@@ -2,13 +2,15 @@ class_name GameStateEnd extends GameState
 
 
 func _ready() -> void:
-	state_name = "end"
+	state_name = Game.StateName.END
 
 
 func enter() -> void:
 	game.logger.log("game enter end")
 	state_processing = true
 
+func reenter() -> void:
+	game.logger.log("game reenter end")
 
 func exit() -> void:
 	state_processing = false

@@ -22,11 +22,11 @@ class Score:
 		home_score = 0
 		away_score = 0
 
-	func player_score(home_or_away: String) -> void:
+	func player_score(home_or_away: Player.HomeOrAway) -> void:
 		match home_or_away:
-			"home":
+			Player.HomeOrAway.HOME:
 				home_score += 1
-			"away":
+			Player.HomeOrAway.AWAY:
 				away_score += 1
 			_:
 				pass

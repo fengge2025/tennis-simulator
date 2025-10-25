@@ -7,5 +7,5 @@ func initialize(game: Game) -> void:
 			c.game = game
 			states[c.state_name] = c
 
-	change_state(states["idle"])
+	change_state(states[Game.StateName.IDLE])
 	process_mode = Node.PROCESS_MODE_INHERIT

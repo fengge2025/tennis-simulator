@@ -8,20 +8,27 @@ func enter() -> void:
 	point.logger.log("point enter play")
 	state_processing = true
 
-	connect_on_state_finished()
+	point.ball.action_finished.connect(_on_ball_action_finished)
+	point.receive_player.action_finished.connect(_on_player_action_finished)
+	point.hit_player.action_finished.connect(_on_player_action_finished)
 
 	point.ball.run_action(point.receive_player.get_prepare_target_position())
 
 func reenter() -> void:
 	point.logger.log("point reenter play")
 
-	connect_on_state_finished()
+	point.ball.action_finished.connect(_on_ball_action_finished)
+	point.receive_player.action_finished.connect(_on_player_action_finished)
+	point.hit_player.action_finished.connect(_on_player_action_finished)
+
 
 
 func exit() -> void:
 	state_processing = false
 
-	disconnect_on_state_finished()
+	point.ball.action_finished.disconnect(_on_ball_action_finished)
+	point.receive_player.action_finished.disconnect(_on_player_action_finished)
+	point.hit_player.action_finished.disconnect(_on_player_action_finished)
 
 
 func process(delta: float) -> State:
@@ -35,22 +42,27 @@ func _on_ball_action_finished(state_outcome: BallOutcome) -> void:
 			pass
 			
 			
-func _on_player_action_finished(player_state_outcome: PlayerOutcome) -> void:
-	match player_state_outcome.action_name:
+func _on_player_action_finished(player_outcome: PlayerOutcome) -> void:
+	match player_outcome.action_name:
 		Player.ActionName.HIT_AND_RUN:
-			match player_state_outcome.hit_result:
+			match player_outcome.hit_result:
 				PlayerHit.HitResult.HIT:
-					point.ball.run_action(player_state_outcome.ball_destination_position)
+					point.ball.run_action(player_outcome.ball_destination_position)
 					_swap_players()
 				PlayerHit.HitResult.MISS:
-					# var state_outcome: PointOutcome = PointOutcome.hit_outcome(
-					# 	point.current_action,
-					# 	player_scored_mapping[player_state_outcome.home_or_away]
-					# )
-					# state_finished.emit(state_outcome)
-					print("miss")
-					pass
+					print(player_outcome.home_or_away, " miss")
+					var score_home_or_away: Player.HomeOrAway = Point.get_score_player_home_or_away(player_outcome.home_or_away)
+					print(score_home_or_away, " score")
+					point.score_home_or_away = score_home_or_away
+					var state_outcome: PointOutcome = PointOutcome.state_play_outcome(
+						point.current_action,
+						state_name
+					)
+					state_finished.emit(state_outcome)
 				_:
 					pass
 		_:
 			pass
+
+func _swap_players() -> void:
+	point.receive_turn ^= 1

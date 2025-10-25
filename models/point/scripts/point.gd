@@ -1,6 +1,6 @@
 class_name Point extends Node2D
 
-signal state_finished(state_outcome: PointOutcome)
+signal action_finished(state_outcome: PointOutcome)
 
 enum ActionName { IDLE, START_POINT, PLAY, END }
 enum StateName { IDLE, PREPARE, PLAY, END }
@@ -14,7 +14,7 @@ var banner: Banner
 var home_player: Player
 var away_player: Player
 var receive_turn: int = 0
-var score_home_or_away: String = "home"
+var score_home_or_away: Player.HomeOrAway
 
 var hit_player: Player:
 	get:
@@ -49,6 +49,17 @@ func start_point_action() -> void:
 	state_machine.change_to(Point.StateName.PREPARE)
 
 
+static func get_score_player_home_or_away(miss_home_or_away: Player.HomeOrAway) -> Player.HomeOrAway:
+	match miss_home_or_away:
+		Player.HomeOrAway.HOME:
+			return Player.HomeOrAway.AWAY
+		Player.HomeOrAway.AWAY:
+			return Player.HomeOrAway.HOME
+		_:
+			push_error("fail to get score player home or away")
+			return Player.HomeOrAway.HOME
+
+
 func _ready() -> void:
 	pass
 
@@ -58,12 +69,12 @@ func _on_prepare_state_finished(_state_outcome: PointOutcome) -> void:
 	state_machine.change_to(Point.StateName.PLAY)
 
 
-func _on_play_state_finished(state_outcome: PointOutcome) -> void:
-	score_home_or_away = state_outcome.score_home_or_away
+func _on_play_state_finished(_state_outcome: PointOutcome) -> void:
+	print("_on_play_state_finished: ", score_home_or_away, " score")
 	current_action = ActionName.END
-	state_machine.change_to(1)
-
+	state_machine.change_to(Point.StateName.END)
 
 func _on_end_state_finished(state_outcome: PointOutcome) -> void:
-	state_machine.change_to(1)
-	state_finished.emit(state_outcome)
+	current_action = ActionName.IDLE
+	state_machine.change_to(Point.StateName.IDLE)
+	action_finished.emit(state_outcome)

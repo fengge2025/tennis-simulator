@@ -8,7 +8,11 @@ script = ExtResource("1_0fq5q")
 [node name="GridContainer" type="GridContainer" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-columns = 2
+columns = 3
+
+[node name="HomeId" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "0"
 
 [node name="HomeName" type="Label" parent="GridContainer"]
 layout_mode = 2
@@ -17,6 +21,10 @@ text = "home"
 [node name="HomeScore" type="Label" parent="GridContainer"]
 layout_mode = 2
 text = "5"
+
+[node name="AwayId" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "1"
 
 [node name="AwayName" type="Label" parent="GridContainer"]
 layout_mode = 2

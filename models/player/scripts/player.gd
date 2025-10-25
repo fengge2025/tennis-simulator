@@ -76,6 +76,7 @@ func _on_run_state_finished(state_outcome: PlayerOutcome) -> void:
 		StateName.RUN:
 			match state_outcome.action_name:
 				ActionName.PREPARE:
+					current_action = ActionName.IDLE
 					state_machine.change_to(StateName.IDLE)
 					var action_outcome: PlayerOutcome = PlayerOutcome.action_prepare_outcome(
 						state_outcome.action_name,
@@ -94,7 +95,7 @@ func _on_animation_finished(animation_name: String) -> void:
 	match animation_name:
 		"hit":
 			var action_outcome: PlayerOutcome = PlayerOutcome.action_hit_and_run_outcome(
-				current_action, player_hit.get_hit_result(), player_hit.get_hit_desire_position()
+				current_action, home_or_away,  player_hit.get_hit_result(), player_hit.get_hit_desire_position()
 			)
 			action_finished.emit(action_outcome)
 		_:

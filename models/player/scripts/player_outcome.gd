@@ -27,10 +27,11 @@ static func action_run_outcome(_action_name: Player.ActionName) -> PlayerOutcome
 	return _action_outcome(_action_name)
 
 
-static func action_hit_and_run_outcome(_action_name: Player.ActionName, _hit_result: PlayerHit.HitResult, _ball_destination_position: Vector2) -> PlayerOutcome:
+static func action_hit_and_run_outcome(_action_name: Player.ActionName, _home_or_away: Player.HomeOrAway, _hit_result: PlayerHit.HitResult, _ball_destination_position: Vector2) -> PlayerOutcome:
 	var outcome: PlayerOutcome =  _action_outcome(_action_name)
 	outcome.hit_result = _hit_result
 	outcome.ball_destination_position = _ball_destination_position
+	outcome.home_or_away = _home_or_away
 	return outcome
 
 
