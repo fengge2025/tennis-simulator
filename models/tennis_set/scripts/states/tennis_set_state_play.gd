@@ -1,13 +1,15 @@
 class_name TennisSetStatePlay extends TennisSetState
 
-
 func _ready() -> void:
-	state_name = "play"
+	state_name = TennisSet.StateName.PLAY
 
 
 func enter() -> void:
 	tennis_set.logger.log("tennis set enter play")
 	state_processing = true
+
+func reenter() -> void:
+	tennis_set.logger.log("tennis set reenter play")
 
 
 func exit() -> void:

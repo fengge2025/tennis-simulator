@@ -1,4 +1,4 @@
-extends Node
+class_name BGMPlayer extends Node
 
 @export var bgm_list: Array[AudioStream] = []
 
