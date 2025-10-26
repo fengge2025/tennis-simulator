@@ -1,7 +1,5 @@
 class_name GameStatePlay extends GameState
 
-signal action_update_score(outcome: GameOutcome)
-
 func _ready() -> void:
 	state_name = Game.StateName.PLAY
 
@@ -29,11 +27,10 @@ func process(delta: float) -> State:
 func _on_point_action_finished(point_outcome: PointOutcome) -> void:
 	match point_outcome.action_name:
 		Point.ActionName.END:
-			game.score.player_score(point_outcome.score_home_or_away)
-
-			var outcome: GameOutcome = GameOutcome.action_play_update_score_outcome(game.current_action, game.score)
-			action_update_score.emit(outcome)
+			#game.score.player_score(point_outcome.score_home_or_away)
 			
+			# should update score?
+
 			# restart a next point
 			game.point.start_point_action()
 		_:

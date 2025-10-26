@@ -13,6 +13,9 @@ var ball: Ball
 var banner: Banner
 var home_player: Player
 var away_player: Player
+
+var score: Score
+
 var receive_turn: int = 0
 var score_home_or_away: Player.HomeOrAway
 
@@ -32,11 +35,14 @@ var receive_player: Player:
 @onready var state_machine: PointStateMachine = $PointStateMachine
 
 
-func initialize(_banner: Banner, _ball: Ball, _home_player: Player, _away_player: Player) -> void:
+func initialize(_banner: Banner, _ball: Ball, _home_player: Player, _away_player: Player, _score: Score) -> void:
 	banner = _banner
 	ball = _ball
 	home_player = _home_player
 	away_player = _away_player
+	
+	score = _score
+	
 	state_machine.initialize(self)
 
 	state_machine.states[Point.StateName.PREPARE].state_finished.connect(_on_prepare_state_finished)
@@ -77,4 +83,7 @@ func _on_play_state_finished(_state_outcome: PointOutcome) -> void:
 func _on_end_state_finished(state_outcome: PointOutcome) -> void:
 	current_action = ActionName.IDLE
 	state_machine.change_to(Point.StateName.IDLE)
+
+	score.update_point(state_outcome.score_home_or_away)
+
 	action_finished.emit(state_outcome)

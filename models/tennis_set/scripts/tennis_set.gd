@@ -33,13 +33,13 @@ func _ready() -> void:
 	pass
 
 
-func initialize(_banner: Banner, _ball: Ball, _home_player: Player, _away_player: Player) -> void:
+func initialize(_banner: Banner, _ball: Ball, _home_player: Player, _away_player: Player, _score: Score) -> void:
 	banner = _banner
 	ball = _ball
 	home_player = _home_player
 	away_player = _away_player
 
-	score = Score.init(null)
+	score = _score
 
 	state_machine.initialize(self)
 
@@ -47,9 +47,7 @@ func initialize(_banner: Banner, _ball: Ball, _home_player: Player, _away_player
 	state_machine.states[StateName.PLAY].state_finished.connect(_on_play_state_finished)
 	state_machine.states[StateName.END].state_finished.connect(_on_end_state_finished)
 
-	game.action_update_score.connect(_on_game_action_update_score)
-
-	game.initialize(_banner, _ball, _home_player, _away_player)
+	game.initialize(_banner, _ball, _home_player, _away_player, _score)
 
 
 func start_set_action() -> void:
@@ -70,7 +68,3 @@ func _on_play_state_finished(_state_outcome: TennisSetOutcome) -> void:
 func _on_end_state_finished(_state_outcome: TennisSetOutcome) -> void:
 	current_action = TennisSet.ActionName.IDLE
 	state_machine.change_to(TennisSet.StateName.IDLE)
-
-
-func _on_game_action_update_score() -> void:
-	pass
