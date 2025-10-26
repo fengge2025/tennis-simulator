@@ -1,6 +1,6 @@
 extends Node
 
-var score: ScoreBoard.Score
+var score: Score
 
 @onready var player_home: Player = $PlayerHome
 @onready var player_away: Player = $PlayerAway
@@ -19,7 +19,7 @@ func _ready() -> void:
 
 	game.action_update_score.connect(_on_game_action_update_score)
 
-	score = ScoreBoard.Score.init(0, 0)
+	score = Score.init()
 	score_board.update_score_board(score)
 	
 	game.initialize(banner, ball, player_home, player_away)

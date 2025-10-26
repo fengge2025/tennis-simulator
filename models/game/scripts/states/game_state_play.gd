@@ -26,11 +26,10 @@ func process(delta: float) -> State:
 	return wait_process(delta)
 
 
-func _on_point_action_finished(point_state_outcome: PointOutcome) -> void:
-	match point_state_outcome.action_name:
+func _on_point_action_finished(point_outcome: PointOutcome) -> void:
+	match point_outcome.action_name:
 		Point.ActionName.END:
-			print(point_state_outcome.score_home_or_away, " score")
-			game.score.player_score(point_state_outcome.score_home_or_away)
+			game.score.player_score(point_outcome.score_home_or_away)
 
 			var outcome: GameOutcome = GameOutcome.action_play_update_score_outcome(game.current_action, game.score)
 			action_update_score.emit(outcome)

@@ -16,7 +16,6 @@ script = ExtResource("1_p05du")
 [node name="Banner" parent="." instance=ExtResource("3_ukvvy")]
 
 [node name="ScoreBoard" parent="." instance=ExtResource("4_g5oli")]
-position = Vector2(435, 41)
 
 [node name="BGMPlayer" parent="." instance=ExtResource("5_pmh87")]
 

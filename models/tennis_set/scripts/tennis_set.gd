@@ -23,7 +23,7 @@ var banner: Banner
 var home_player: Player
 var away_player: Player
 
-var score: ScoreBoard.Score
+var score: Score
 
 @onready var state_machine: TennisSetStateMachine = $TennisSetStateMachine
 @onready var game: Game = $Game
@@ -39,13 +39,15 @@ func initialize(_banner: Banner, _ball: Ball, _home_player: Player, _away_player
 	home_player = _home_player
 	away_player = _away_player
 
-	score = ScoreBoard.Score.new()
+	score = Score.init(null)
 
 	state_machine.initialize(self)
 
 	state_machine.states[StateName.START].state_finished.connect(_on_start_state_finished)
 	state_machine.states[StateName.PLAY].state_finished.connect(_on_play_state_finished)
 	state_machine.states[StateName.END].state_finished.connect(_on_end_state_finished)
+
+	game.action_update_score.connect(_on_game_action_update_score)
 
 	game.initialize(_banner, _ball, _home_player, _away_player)
 
@@ -68,3 +70,7 @@ func _on_play_state_finished(_state_outcome: TennisSetOutcome) -> void:
 func _on_end_state_finished(_state_outcome: TennisSetOutcome) -> void:
 	current_action = TennisSet.ActionName.IDLE
 	state_machine.change_to(TennisSet.StateName.IDLE)
+
+
+func _on_game_action_update_score() -> void:
+	pass

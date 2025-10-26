@@ -4,42 +4,44 @@ var score_mapping: Dictionary = {0: "0", 1: "15", 2: "30", 3: "40"}
 
 @onready var home_name: Label = $GridContainer/HomeName
 @onready var away_name: Label = $GridContainer/AwayName
-@onready var home_score: Label = $GridContainer/HomeScore
-@onready var away_score: Label = $GridContainer/AwayScore
 
+@onready var home_matches: Label = $GridContainer/HomeMatches
+@onready var home_sets: Label = $GridContainer/HomeSets
+@onready var home_games: Label = $GridContainer/HomeGames
+@onready var home_points: Label = $GridContainer/HomePoints
 
-class Score:
-	var home_score: int = 0
-	var away_score: int = 0
+@onready var away_matches: Label = $GridContainer/AwayMatches
+@onready var away_sets: Label = $GridContainer/AwaySets
+@onready var away_games: Label = $GridContainer/AwayGames
+@onready var away_points: Label = $GridContainer/AwayPoints
 
-	static func init(_home_score: int, _away_score: int) -> Score:
-		var score: Score = Score.new()
-		score.home_score = _home_score
-		score.away_score = _away_score
-		return score
+# class Score:
+# 	var home_score: int = 0
+# 	var away_score: int = 0
 
-	func reset() -> void:
-		home_score = 0
-		away_score = 0
+# 	static func init(_home_score: int, _away_score: int) -> Score:
+# 		var score: Score = Score.new()
+# 		score.home_score = _home_score
+# 		score.away_score = _away_score
+# 		return score
 
-	func player_score(home_or_away: Player.HomeOrAway) -> void:
-		match home_or_away:
-			Player.HomeOrAway.HOME:
-				home_score += 1
-			Player.HomeOrAway.AWAY:
-				away_score += 1
-			_:
-				pass
+# 	func reset() -> void:
+# 		home_score = 0
+# 		away_score = 0
 
-
-func reset_score_board() -> void:
-	home_score.text = "0"
-	away_score.text = "0"
+# 	func player_score(home_or_away: Player.HomeOrAway) -> void:
+# 		match home_or_away:
+# 			Player.HomeOrAway.HOME:
+# 				home_score += 1
+# 			Player.HomeOrAway.AWAY:
+# 				away_score += 1
+# 			_:
+# 				pass
 
 
 func update_score_board(score: Score) -> void:
-	home_score.text = _get_tennis_display_score(score.home_score, score.away_score)
-	away_score.text = _get_tennis_display_score(score.away_score, score.home_score)
+	home_points.text = _get_tennis_display_score(score.home_points, score.away_points)
+	away_points.text = _get_tennis_display_score(score.away_points, score.home_points)
 
 
 func _get_tennis_display_score(score: int, opponent_score: int) -> String:
