@@ -13,11 +13,9 @@ func _ready() -> void:
 func _on_ball_action_finished(outcome: BallOutcome) -> void:
 	match outcome.action_name:
 		Ball.ActionName.PREPARE:
-			print("ball_bg action prepare done")
 			var vv: Vector2 = Vector2(350, 350)
 			ball.run_action(vv)
 		Ball.ActionName.RUN:
-			print("ball_bg action run done")
 			var v: Vector2 = Vector2(100, 100)
 			ball.prepare_action(v)
 		_:

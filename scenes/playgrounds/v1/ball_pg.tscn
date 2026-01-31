@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ba1j674ysy7tn"]
 
-[ext_resource type="Script" path="res://scenes/playgrounds/scripts/ball_pg.gd" id="1_ejgry"]
+[ext_resource type="Script" path="res://scenes/playgrounds/v1/scripts/ball_pg.gd" id="1_ejgry"]
 [ext_resource type="PackedScene" uid="uid://s4q8h48y8l4u" path="res://models/ball/ball.tscn" id="2_wxa5l"]
 
 [node name="BallPg" type="Node2D"]

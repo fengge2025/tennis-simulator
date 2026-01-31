@@ -23,5 +23,4 @@ func process(_delta: float) -> State:
 			point.score_home_or_away
 		)
 		state_finished.emit(state_outcome)
-		pass
 	return null

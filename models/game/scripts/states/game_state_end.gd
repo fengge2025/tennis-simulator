@@ -16,5 +16,12 @@ func exit() -> void:
 	state_processing = false
 
 
-func process(delta: float) -> State:
-	return wait_process(delta)
+func process(_delta: float) -> State:
+	if state_processing:
+		state_processing = false
+	else:
+		var state_outcome: GameOutcome = GameOutcome.state_end_outcome(
+			game.current_action, state_name
+		)
+		state_finished.emit(state_outcome)
+	return null

@@ -8,7 +8,7 @@ script = ExtResource("1_0fq5q")
 [node name="GridContainer" type="GridContainer" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-columns = 3
+columns = 6
 
 [node name="HomeId" type="Label" parent="GridContainer"]
 layout_mode = 2
@@ -18,7 +18,19 @@ text = "0"
 layout_mode = 2
 text = "home"
 
-[node name="HomeScore" type="Label" parent="GridContainer"]
+[node name="HomeMatches" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "?"
+
+[node name="HomeSets" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="HomeGames" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="HomePoints" type="Label" parent="GridContainer"]
 layout_mode = 2
 text = "5"
 
@@ -30,6 +42,18 @@ text = "1"
 layout_mode = 2
 text = "away"
 
-[node name="AwayScore" type="Label" parent="GridContainer"]
+[node name="AwayMatches" type="Label" parent="GridContainer"]
 layout_mode = 2
-text = "10"
+text = "?"
+
+[node name="AwaySets" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="AwayGames" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="AwayPoints" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "5"

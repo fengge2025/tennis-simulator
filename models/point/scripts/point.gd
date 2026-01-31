@@ -13,6 +13,7 @@ var ball: Ball
 var banner: Banner
 var home_player: Player
 var away_player: Player
+
 var receive_turn: int = 0
 var score_home_or_away: Player.HomeOrAway
 
@@ -37,6 +38,7 @@ func initialize(_banner: Banner, _ball: Ball, _home_player: Player, _away_player
 	ball = _ball
 	home_player = _home_player
 	away_player = _away_player
+		
 	state_machine.initialize(self)
 
 	state_machine.states[Point.StateName.PREPARE].state_finished.connect(_on_prepare_state_finished)
@@ -60,21 +62,20 @@ static func get_score_player_home_or_away(miss_home_or_away: Player.HomeOrAway) 
 			return Player.HomeOrAway.HOME
 
 
-func _ready() -> void:
-	pass
-
-
 func _on_prepare_state_finished(_state_outcome: PointOutcome) -> void:
 	current_action = ActionName.PLAY
 	state_machine.change_to(Point.StateName.PLAY)
 
-
 func _on_play_state_finished(_state_outcome: PointOutcome) -> void:
-	print("_on_play_state_finished: ", score_home_or_away, " score")
 	current_action = ActionName.END
 	state_machine.change_to(Point.StateName.END)
 
 func _on_end_state_finished(state_outcome: PointOutcome) -> void:
 	current_action = ActionName.IDLE
 	state_machine.change_to(Point.StateName.IDLE)
-	action_finished.emit(state_outcome)
+
+	print("point score:", state_outcome.score_home_or_away)
+	var action_outcome: PointOutcome = PointOutcome.action_end_outcome(state_outcome.action_name, state_outcome.score_home_or_away)
+	print("_on_end_state_finished", state_outcome.action_name)
+
+	action_finished.emit(action_outcome)

@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=3 uid="uid://dxeduaqh52rvy"]
+
+[ext_resource type="Script" path="res://models/manager/scripts/manager.gd" id="1_rfd6o"]
+[ext_resource type="Script" path="res://models/manager/scripts/manager_state_machine.gd.gd" id="2_uonn3"]
+[ext_resource type="Script" path="res://models/manager/scripts/states/manager_state_idle.gd" id="3_2oyou"]
+[ext_resource type="PackedScene" uid="uid://c6e24b3cqp0o8" path="res://models/board/score_board.tscn" id="5_n76n1"]
+[ext_resource type="PackedScene" uid="uid://b7qwq76fes3u1" path="res://models/banner/banner.tscn" id="6_eav7b"]
+[ext_resource type="PackedScene" uid="uid://dcc05q6l40g4t" path="res://models/point/point.tscn" id="6_pta8y"]
+[ext_resource type="PackedScene" uid="uid://s4q8h48y8l4u" path="res://models/ball/ball.tscn" id="7_85qgx"]
+[ext_resource type="PackedScene" uid="uid://c7ysh8prm1be3" path="res://models/player/player.tscn" id="8_hnyqf"]
+
+[node name="Manager" type="Node2D"]
+script = ExtResource("1_rfd6o")
+
+[node name="ManagerStateMachine" type="Node" parent="."]
+script = ExtResource("2_uonn3")
+
+[node name="ManagerStateIdle" type="Node" parent="ManagerStateMachine"]
+script = ExtResource("3_2oyou")
+
+[node name="ScoreBoard" parent="." instance=ExtResource("5_n76n1")]
+
+[node name="Point" parent="." instance=ExtResource("6_pta8y")]
+
+[node name="Banner" parent="." instance=ExtResource("6_eav7b")]
+
+[node name="Ball" parent="." instance=ExtResource("7_85qgx")]
+
+[node name="PlayerHome" parent="." instance=ExtResource("8_hnyqf")]
+color = Color(1, 0, 1, 1)
+
+[node name="PlayerAway" parent="." instance=ExtResource("8_hnyqf")]
+color = Color(1, 1, 0, 1)
+home_or_away = 1

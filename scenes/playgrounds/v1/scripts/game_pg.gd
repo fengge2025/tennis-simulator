@@ -1,6 +1,6 @@
 extends Node
 
-var score: ScoreBoard.Score
+var score: Score
 
 @onready var player_home: Player = $PlayerHome
 @onready var player_away: Player = $PlayerAway
@@ -17,25 +17,11 @@ func _ready() -> void:
 	# var v: Vector2 = Vector2(100, 100)
 	#player.prepare_action(v)
 
-	game.action_update_score.connect(_on_game_action_update_score)
-
-	score = ScoreBoard.Score.init(0, 0)
-	score_board.update_score_board(score)
+	score = Score.init(score_board)
 	
-	game.initialize(banner, ball, player_home, player_away)
+	game.initialize(banner, ball, player_home, player_away, score)
 	
 	game.start_game_action()
-	
-
-func _on_game_action_update_score(outcome: GameOutcome) -> void:
-	# print(123)
-	# print(outcome.action_name)
-	# print(Game.ActionName.PLAY)
-	match outcome.action_name:
-		Game.ActionName.PLAY:
-			score_board.update_score_board(game.score)
-		_:
-			pass
 
 #func _on_point_action_finished(outcome: PlayerOutcome) -> void:
 	#match outcome.action_name:

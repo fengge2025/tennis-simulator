@@ -50,9 +50,7 @@ func _on_player_action_finished(player_outcome: PlayerOutcome) -> void:
 					point.ball.run_action(player_outcome.ball_destination_position)
 					_swap_players()
 				PlayerHit.HitResult.MISS:
-					print(player_outcome.home_or_away, " miss")
 					var score_home_or_away: Player.HomeOrAway = Point.get_score_player_home_or_away(player_outcome.home_or_away)
-					print(score_home_or_away, " score")
 					point.score_home_or_away = score_home_or_away
 					var state_outcome: PointOutcome = PointOutcome.state_play_outcome(
 						point.current_action,

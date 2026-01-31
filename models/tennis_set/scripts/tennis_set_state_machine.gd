@@ -7,5 +7,5 @@ func initialize(tennis_set: TennisSet) -> void:
 			c.tennis_set = tennis_set
 			states[c.state_name] = c
 
-	change_state(states["idle"])
+	change_state(states[TennisSet.StateName.IDLE])
 	process_mode = Node.PROCESS_MODE_INHERIT

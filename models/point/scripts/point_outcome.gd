@@ -5,13 +5,11 @@ var state_name: Point.StateName
 
 var score_home_or_away: Player.HomeOrAway
 
-static func action_prepare_outcome(_action_name: Point.ActionName) -> PointOutcome:
-	return _action_outcome(_action_name)
 
-
-static func action_run_outcome(_action_name: Point.ActionName) -> PointOutcome:
-	return _action_outcome(_action_name)
-
+static func action_end_outcome(_action_name: Point.ActionName, _score_home_or_away: Player.HomeOrAway) -> PointOutcome:
+	var outcome: PointOutcome = _action_outcome(_action_name)
+	outcome.score_home_or_away = _score_home_or_away
+	return outcome
 
 static func state_prepare_outcome(_action_name: Point.ActionName, _state_name: Point.StateName) -> PointOutcome:
 	return _state_outcome(_action_name, _state_name)

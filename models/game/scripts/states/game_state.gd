@@ -24,8 +24,8 @@ func pass_process(_delta: float) -> State:
 	return null
 
 
-func _on_point_action_finished(point_state_outcome: PointOutcome) -> void:
-	match point_state_outcome.action_name:
+func _on_point_action_finished(point_outcome: PointOutcome) -> void:
+	match point_outcome.action_name:
 		Point.ActionName.END:
 			pass
 		_:

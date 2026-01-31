@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq50tiaw4n5me"]
+
+[ext_resource type="Script" path="res://scenes/playgrounds/v2/scripts/sim_pg.gd" id="1_t6dp7"]
+[ext_resource type="PackedScene" uid="uid://dxeduaqh52rvy" path="res://models/manager/manager.tscn" id="1_y7llc"]
+
+[node name="SimPg" type="Node2D"]
+script = ExtResource("1_t6dp7")
+
+[node name="Manager" parent="." instance=ExtResource("1_y7llc")]

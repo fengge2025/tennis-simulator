@@ -1,18 +1,14 @@
-class_name TennisSetStateIdle extends TennisSetState
-
+class_name ManagerStateIdle extends ManagerState
 
 func _ready() -> void:
-	state_name = TennisSet.StateName.IDLE
-
+	state_name = Manager.StateName.IDLE
 
 func enter() -> void:
-	tennis_set.logger.log("tennis set enter idle")
+	manager.logger.log("manager enter idle")
 	state_processing = true
 
 func reenter() -> void:
-	tennis_set.logger.log("tennis set reenter idle")
-
-
+	manager.logger.log("manager reenter idle")
 func exit() -> void:
 	state_processing = false
 

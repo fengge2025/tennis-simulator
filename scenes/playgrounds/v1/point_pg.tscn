@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://d1cnj8voggsip"]
 
-[ext_resource type="Script" path="res://scenes/playgrounds/scripts/point_pg .gd" id="1_a5qu6"]
+[ext_resource type="Script" path="res://scenes/playgrounds/v1/scripts/point_pg .gd" id="1_a5qu6"]
 [ext_resource type="PackedScene" uid="uid://c7ysh8prm1be3" path="res://models/player/player.tscn" id="2_aiekn"]
 [ext_resource type="PackedScene" uid="uid://s4q8h48y8l4u" path="res://models/ball/ball.tscn" id="3_be5sh"]
 [ext_resource type="PackedScene" uid="uid://dcc05q6l40g4t" path="res://models/point/point.tscn" id="4_iqtk0"]
