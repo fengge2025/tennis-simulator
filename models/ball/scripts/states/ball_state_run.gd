@@ -12,9 +12,13 @@ func enter() -> void:
 	ball.update_animation("run")
 	state_processing = true
 
+	speed = ball.match_configs["ball_speed"]
+
 
 func reenter() -> void:
 	ball.logger.log("ball reenter run")
+
+	speed = ball.match_configs["ball_speed"]
 
 
 func exit() -> void:

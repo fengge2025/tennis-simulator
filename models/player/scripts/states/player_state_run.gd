@@ -12,9 +12,13 @@ func enter() -> void:
 	player.update_animation("run")
 	state_processing = true
 
+	speed = player.match_configs["player_speed"]
+
 
 func reenter() -> void:
 	player.logger.log("player reenter run")
+
+	speed = player.match_configs["player_speed"]
 
 
 func exit() -> void:
@@ -31,9 +35,12 @@ func process(delta: float) -> State:
 		else:
 			player.position = player.target_position
 			state_processing = false
+			player.on_target_position = true
 	else:
-		var state_outcome: PlayerOutcome = PlayerOutcome.state_run_outcome(
-			player.current_action, state_name, player.target_position
+		var state_outcome: PlayerOutcome.PlayerStateRunOutcome = (
+			PlayerOutcome
+			. PlayerStateRunOutcome
+			. new_run_outcome(player.current_action, player.target_position)
 		)
 		state_finished.emit(state_outcome)
 	return null

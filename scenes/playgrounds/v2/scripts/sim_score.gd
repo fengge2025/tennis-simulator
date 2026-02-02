@@ -13,9 +13,11 @@ var game_num: int = 1
 var set_num: int = 1
 var match_num: int = 1
 
+
 static func init() -> SimScore:
 	var score: SimScore = SimScore.new()
 	return score
+
 
 func update_point(winner: Player.HomeOrAway) -> bool:
 	match winner:
@@ -29,12 +31,15 @@ func update_point(winner: Player.HomeOrAway) -> bool:
 			push_error("not a valid winner:", winner)
 			return false
 
+
 func clean_point() -> void:
 	home_points = 0
 	away_points = 0
 
+
 func _check_point(winner_points: int, loser_points: int) -> bool:
 	return winner_points - loser_points > 1 and winner_points > 3
+
 
 func update_game(winner: Player.HomeOrAway) -> bool:
 	match winner:
@@ -48,9 +53,11 @@ func update_game(winner: Player.HomeOrAway) -> bool:
 			push_error("not a valid winner:", winner)
 			return false
 
+
 func clean_game() -> void:
 	home_games = 0
 	away_games = 0
+
 
 func _check_game(winner_games: int, loser_games: int) -> bool:
 	return winner_games - loser_games > 1 and winner_games > 5
@@ -68,8 +75,10 @@ func update_set(winner: Player.HomeOrAway) -> bool:
 			push_error("not a valid winner:", winner)
 			return false
 
+
 func _check_set(winner_sets: int, loser_sets: int) -> bool:
 	return winner_sets - loser_sets > 1 and winner_sets > 2
+
 
 func clean_set() -> void:
 	home_sets = 0

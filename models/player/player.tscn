@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c7ysh8prm1be3"]
+[gd_scene load_steps=14 format=3 uid="uid://c7ysh8prm1be3"]
 
 [ext_resource type="Script" path="res://models/player/scripts/player.gd" id="1_jpf2m"]
 [ext_resource type="Texture2D" uid="uid://fv4iur0lvraa" path="res://models/player/assets/player01.png" id="2_7moey"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://models/player/scripts/states/player_state_run.gd" id="4_6tmny"]
 [ext_resource type="Script" path="res://models/player/scripts/states/player_state_hit.gd" id="5_owva3"]
 [ext_resource type="Script" path="res://models/player/scripts/states/player_state_idle.gd" id="6_8ci33"]
+[ext_resource type="Script" path="res://models/player/scripts/states/player_state_wait.gd" id="7_art62"]
 
 [sub_resource type="Animation" id="Animation_xg4q0"]
 length = 0.001
@@ -72,12 +73,30 @@ tracks/0/keys = {
 "values": [4, 5, 6, 7]
 }
 
+[sub_resource type="Animation" id="Animation_oxjqr"]
+resource_name = "wait"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_djtf8"]
 _data = {
 "RESET": SubResource("Animation_xg4q0"),
 "hit": SubResource("Animation_qjtil"),
 "idle": SubResource("Animation_xsyss"),
-"run": SubResource("Animation_kpdpu")
+"run": SubResource("Animation_kpdpu"),
+"wait": SubResource("Animation_oxjqr")
 }
 
 [node name="Player" type="Node2D"]
@@ -111,3 +130,6 @@ script = ExtResource("6_8ci33")
 
 [node name="PlayerStateRun" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("4_6tmny")
+
+[node name="PlayerStateWait" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("7_art62")

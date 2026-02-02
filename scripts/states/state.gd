@@ -30,3 +30,11 @@ func physics_process(_delta: float) -> State:
 
 func handle_input(_event: InputEvent) -> State:
 	return null
+
+
+func _wait_process(_delta: float) -> State:
+	return null
+
+
+func _pass_process(_delta: float) -> State:
+	return null

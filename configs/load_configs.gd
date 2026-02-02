@@ -57,6 +57,9 @@ func load_match_config() -> void:
 	home.hit_x_max = territory_x_max
 	home.hit_y_min = territory_away_y_min
 	home.hit_y_max = territory_away_y_max
+	home.prepare_x = (territory_x_min + territory_x_max) / 2.0
+	home.prepare_y = (territory_home_y_min + territory_home_y_max) / 2.0
+
 	home.loaded = true
 
 	var away: MatchConfig = MatchConfig.new()
@@ -68,6 +71,8 @@ func load_match_config() -> void:
 	away.hit_x_max = territory_x_max
 	away.hit_y_min = territory_home_y_min
 	away.hit_y_max = territory_home_y_max
+	away.prepare_x = (territory_x_min + territory_x_max) / 2.0
+	away.prepare_y = (territory_away_y_min + territory_away_y_max) / 2.0
 	away.loaded = true
 
 	match_configs[Player.HomeOrAway.HOME] = home

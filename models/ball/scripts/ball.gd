@@ -8,6 +8,9 @@ enum StateName { IDLE, RUN }
 var logger: Logger = Logger.initialize("ball")
 
 var current_action: ActionName = ActionName.IDLE
+
+var match_configs: MatchConfig
+
 var target_position: Vector2 = Vector2.ZERO
 
 @onready var state_machine: BallStateMachine = $BallStateMachine
@@ -17,13 +20,10 @@ var target_position: Vector2 = Vector2.ZERO
 func prepare_action(_target_position: Vector2) -> void:
 	current_action = ActionName.PREPARE
 	_run_handler(_target_position)
-	
+
 
 func get_prepare_target_position() -> Vector2:
-	var rand_vec: Vector2 = Vector2(
-		randf_range(150, 250),
-		randf_range(150, 250)
-	)
+	var rand_vec: Vector2 = Vector2(randf_range(150, 250), randf_range(150, 250))
 	return rand_vec
 
 
@@ -45,6 +45,10 @@ func _ready() -> void:
 	state_machine.initialize(self)
 	state_machine.states[StateName.RUN].state_finished.connect(_on_run_state_finished)
 
+	match_configs = LoadConfigs.match_configs.get(Player.HomeOrAway.HOME)
+	if match_configs.loaded == false:
+		logger.error("Match configs not loaded for player %s" % Player.HomeOrAway.HOME)
+
 
 func _run_handler(_target_position: Vector2) -> void:
 	target_position = _target_position
@@ -60,14 +64,12 @@ func _on_run_state_finished(state_outcome: BallOutcome) -> void:
 			match state_outcome.action_name:
 				ActionName.PREPARE:
 					var action_outcome: BallOutcome = BallOutcome.action_run_outcome(
-						state_outcome.action_name,
-						target_position
+						state_outcome.action_name, target_position
 					)
 					action_finished.emit(action_outcome)
 				ActionName.RUN:
 					var action_outcome: BallOutcome = BallOutcome.action_run_outcome(
-						state_outcome.action_name,
-						target_position
+						state_outcome.action_name, target_position
 					)
 					action_finished.emit(action_outcome)
 				_:

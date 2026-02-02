@@ -18,7 +18,9 @@ static func action_prepare_outcome(_action_name: Ball.ActionName) -> BallOutcome
 	return _action_outcome(_action_name)
 
 
-static func action_run_outcome(_action_name: Ball.ActionName, _ball_destination_position: Vector2) -> BallOutcome:
+static func action_run_outcome(
+	_action_name: Ball.ActionName, _ball_destination_position: Vector2
+) -> BallOutcome:
 	var outcome: BallOutcome = _action_outcome(_action_name)
 	outcome.ball_destination_position = _ball_destination_position
 	return outcome

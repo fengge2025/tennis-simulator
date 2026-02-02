@@ -26,6 +26,7 @@ func enter() -> void:
 	point.receive_player.prepare_action(point.receive_player.get_prepare_target_position())
 	point.banner.display_banner("start")
 
+
 func reenter() -> void:
 	point.logger.log("point reenter prepare")
 
@@ -50,27 +51,28 @@ func process(_delta: float) -> State:
 			state_processing = false
 			return null
 	else:
-		var state_outcome: PointOutcome = PointOutcome.state_prepare_outcome(
-			point.current_action, state_name
+		var state_outcome: PointOutcome.PointStatePrepareOutcome = (
+			PointOutcome.PointStatePrepareOutcome.new_prepare_outcome()
 		)
 		state_finished.emit(state_outcome)
 	return null
-	
-	
+
+
 func _on_ball_action_finished(state_outcome: BallOutcome) -> void:
 	match state_outcome.action_name:
 		Ball.ActionName.PREPARE:
 			processing_done["ball"] = true
 		_:
 			pass
-			
-func _on_player_action_finished(player_state_outcome: PlayerOutcome) -> void:
+
+
+func _on_player_action_finished(player_state_outcome: PlayerOutcome.PlayerActionOutcome) -> void:
 	match player_state_outcome.action_name:
 		Player.ActionName.PREPARE:
 			processing_done[player_state_outcome.home_or_away] = true
-			pass
 		_:
 			pass
+
 
 func _on_banner_animation_finished(_animation_name: String) -> void:
 	processing_done["banner"] = true

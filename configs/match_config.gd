@@ -10,5 +10,8 @@ var hit_x_min: int = 0
 var hit_x_max: int = 0
 var hit_y_min: int = 0
 var hit_y_max: int = 0
+var prepare_x: float = 0.0
+var prepare_y: float = 0.0
 
-var base_speed: float = 200.0
+var ball_speed: float = 200.0
+var player_speed: float = 800.0

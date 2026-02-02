@@ -3,6 +3,7 @@ class_name ManagerOutcome extends Outcome
 var action_name: Manager.ActionName
 var state_name: Manager.StateName
 
+
 static func _state_outcome(
 	_action_name: Manager.ActionName, _state_name: Manager.StateName
 ) -> ManagerOutcome:
