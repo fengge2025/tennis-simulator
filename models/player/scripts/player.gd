@@ -71,7 +71,7 @@ func _ready() -> void:
 	if match_configs.loaded == false:
 		logger.error("Match configs not loaded for player %s" % home_or_away)
 
-	player_stat = PlayerStat.new(20, 20, 20)
+	player_stat = PlayerStat.new(6, 20, 20)
 	player_hit = PlayerHit.new(match_configs, player_stat)
 
 	state_machine.initialize(self)

@@ -39,7 +39,7 @@ var score_mapping: Dictionary = {0: "0", 1: "15", 2: "30", 3: "40"}
 # 				pass
 
 
-func update_score_board(score: SimScore) -> void:
+func update_score_board(score: Score) -> void:
 	home_points.text = _get_tennis_display_score(score.home_points, score.away_points)
 	away_points.text = _get_tennis_display_score(score.away_points, score.home_points)
 

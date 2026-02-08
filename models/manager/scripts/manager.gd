@@ -7,7 +7,7 @@ var logger: Logger = Logger.initialize("manager")
 
 var current_action: ActionName = ActionName.IDLE
 
-var score: SimScore
+var score: Score
 
 @onready var banner: Banner = $Banner
 @onready var player_home: Player = $PlayerHome
@@ -20,7 +20,7 @@ var score: SimScore
 
 func initialize() -> void:
 	state_machine.initialize(self)
-	score = SimScore.new()
+	score = Score.new()
 	point.initialize(banner, ball, player_home, player_away)
 	point.action_finished.connect(_point_action_finished)
 
