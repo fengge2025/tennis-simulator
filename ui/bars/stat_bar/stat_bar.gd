@@ -12,10 +12,12 @@ var bar_cells: Array[BarCell]
 
 @onready var h_box_container: HBoxContainer = $HBoxContainer
 
+
 func _ready() -> void:
 	for bar_cell in h_box_container.get_children():
 		bar_cells.append(bar_cell)
 		bar_cell.texture = texture
+
 
 func update_stat(stat: int) -> void:
 	var cell_count: int = ceil(float(stat) / float(cell_unit))

@@ -28,6 +28,7 @@ var on_target_position: bool = false
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var label: Label = $Label
 
+
 func run_action(_target_position: Vector2) -> void:
 	current_action = ActionName.RUN
 	on_target_position = false
@@ -45,10 +46,7 @@ func prepare_action(_target_position: Vector2) -> void:
 
 
 func get_prepare_target_position() -> Vector2:
-	return Vector2(
-		match_configs.prepare_x,
-		match_configs.prepare_y
-	)
+	return Vector2(match_configs.prepare_x, match_configs.prepare_y)
 
 
 func get_hit_target_position() -> Vector2:

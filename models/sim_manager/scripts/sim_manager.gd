@@ -3,6 +3,8 @@ class_name SimManager extends Node2D
 enum ActionName { IDLE }
 enum StateName { IDLE }
 
+@export var sim_match_iter: int
+
 var logger: Logger = Logger.initialize("sim_manager")
 
 var current_action: ActionName = ActionName.IDLE
@@ -12,13 +14,8 @@ var stat: SimManagerStat
 var sim_point: SimPoint
 var score_home_or_away: Player.HomeOrAway
 
-# 500 match
-# 1500 set
-# 5000 game
-# 15000 point
-@export var sim_match_iter: int
-
 @onready var sim_score_board: SimScoreBoard = $PanelContainer/SimScoreBoard
+
 
 func initialize() -> void:
 	score = Score.new()
@@ -26,16 +23,19 @@ func initialize() -> void:
 	sim_point = SimPoint.new()
 	sim_score_board.match_iter = sim_match_iter
 
+
 func start_sim() -> void:
 	for i in range(sim_match_iter):
 		start_new_match()
 		await get_tree().create_timer(0.01).timeout
+
 
 func start_new_point() -> bool:
 	var outcome: SimPoint.SimPointOutcome = sim_point.start_rng_point_action()
 	score_home_or_away = outcome.score_home_or_away
 	stat.update_point(score_home_or_away)
 	return score.update_point(score_home_or_away)
+
 
 func start_new_game() -> bool:
 	var end_game: bool = false
@@ -45,6 +45,7 @@ func start_new_game() -> bool:
 	#sim_score_board.update_stat(stat)
 	return score.update_game(score_home_or_away)
 
+
 func start_new_set() -> bool:
 	var end_set: bool = false
 	while !end_set:
@@ -52,6 +53,7 @@ func start_new_set() -> bool:
 	stat.update_set(score_home_or_away)
 	#sim_score_board.update_stat(stat)
 	return score.update_set(score_home_or_away)
+
 
 func start_new_match() -> void:
 	var end_match: bool = false
@@ -110,19 +112,19 @@ class SimManagerStat:
 
 	func _to_string() -> String:
 		return (
-		"Match %d: %d-%d, Set %d: %d-%d, Game %d: %d-%d, Point %d: %d-%d"
-		% [
-			match_home + match_away,
-			match_home,
-			match_away,
-			set_home + set_away,
-			set_home,
-			set_away,
-			game_home + game_away,
-			game_home,
-			game_away,
-			point_home + point_away,
-			point_home,
-			point_away
-		]
-	)
+			"Match %d: %d-%d, Set %d: %d-%d, Game %d: %d-%d, Point %d: %d-%d"
+			% [
+				match_home + match_away,
+				match_home,
+				match_away,
+				set_home + set_away,
+				set_home,
+				set_away,
+				game_home + game_away,
+				game_home,
+				game_away,
+				point_home + point_away,
+				point_home,
+				point_away
+			]
+		)

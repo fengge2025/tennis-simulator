@@ -11,6 +11,7 @@ var game_num: int = 1
 var set_num: int = 1
 var match_num: int = 1
 
+
 func update_point(winner: Player.HomeOrAway) -> bool:
 	match winner:
 		Player.HomeOrAway.HOME:
@@ -64,10 +65,12 @@ func clean_set() -> void:
 	home_sets = 0
 	away_sets = 0
 
+
 func reset_score() -> void:
 	clean_point()
 	clean_game()
 	clean_set()
+
 
 func _to_string() -> String:
 	return (

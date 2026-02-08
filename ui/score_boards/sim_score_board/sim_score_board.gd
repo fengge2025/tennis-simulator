@@ -14,11 +14,12 @@ class_name SimScoreBoard extends Control
 @onready var score_stat_board_match: ScoreStatBoard = $VBoxContainer/ScoreStatBoardMatch
 
 
-func _ready():
+func _ready() -> void:
 	score_stat_board_point.label_text = "point"
 	score_stat_board_game.label_text = "game"
 	score_stat_board_set.label_text = "set"
 	score_stat_board_match.label_text = "match"
+
 
 func update_stat(score: SimManager.SimManagerStat) -> void:
 	score_stat_board_point.update_stat(score.point_home, score.point_away)
