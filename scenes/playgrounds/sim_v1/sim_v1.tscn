@@ -1,13 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpjhcvhy8etcj"]
+[gd_scene load_steps=5 format=3 uid="uid://bpjhcvhy8etcj"]
 
 [ext_resource type="Script" path="res://scenes/playgrounds/sim_v1/sim_v1/sim_v1.gd" id="1_2bu4n"]
 [ext_resource type="PackedScene" uid="uid://cb5yscur3lwqc" path="res://models/sim_manager/sim_manager.tscn" id="2_nmff5"]
 [ext_resource type="PackedScene" uid="uid://cq11w2tnc8ies" path="res://ui/exit_button/exit_button.tscn" id="3_37x2c"]
+[ext_resource type="Texture2D" uid="uid://b8knvvnarxp3r" path="res://models/court/assets/tennis-court-0002.png" id="4_upocw"]
 
 [node name="SimV1" type="Node2D"]
 script = ExtResource("1_2bu4n")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_upocw")
+centered = false
+
 [node name="SimManager" parent="." instance=ExtResource("2_nmff5")]
+sim_match_iter = 1000
 
 [node name="ExitButton" parent="." instance=ExtResource("3_37x2c")]
 position = Vector2(233, 187)

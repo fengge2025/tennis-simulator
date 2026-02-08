@@ -1,12 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://cb5yscur3lwqc"]
+[gd_scene load_steps=4 format=3 uid="uid://cb5yscur3lwqc"]
 
 [ext_resource type="Script" path="res://models/sim_manager/scripts/sim_manager.gd" id="1_ljc05"]
-[ext_resource type="PackedScene" uid="uid://d0fnrkne5c8xp" path="res://models/sim_score_board/sim_score_board.tscn" id="2_5v1qb"]
+[ext_resource type="PackedScene" uid="uid://bgfj5snd88edn" path="res://ui/score_boards/sim_score_board/sim_score_board.tscn" id="2_ddg30"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21xso"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.12549, 0.12549, 0.12549, 0.862745)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="SimManager" type="Node2D"]
 script = ExtResource("1_ljc05")
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_left = 40.0
+offset_top = 50.0
+offset_right = 307.0
+offset_bottom = 266.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_21xso")
 
-[node name="SimScoreBoard" parent="." instance=ExtResource("2_5v1qb")]
+[node name="SimScoreBoard" parent="PanelContainer" instance=ExtResource("2_ddg30")]
+layout_mode = 2

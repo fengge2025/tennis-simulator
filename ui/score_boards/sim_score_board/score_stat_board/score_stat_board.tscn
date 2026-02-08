@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://bafgft0kin0gc"]
+
+[ext_resource type="Script" path="res://ui/score_boards/sim_score_board/score_stat_board/score_stat_board.gd" id="1_1dh4m"]
+[ext_resource type="PackedScene" uid="uid://cpbhc3fmxqkoj" path="res://ui/bars/stat_bar/stat_bar.tscn" id="2_8gyas"]
+[ext_resource type="Texture2D" uid="uid://c5lo0bs41dftt" path="res://ui/bars/stat_bar/assets/bar_blue_v1.png" id="3_r34di"]
+[ext_resource type="Texture2D" uid="uid://bxgcepj8gnf8m" path="res://ui/bars/stat_bar/assets/bar_yellow_v1.png" id="4_axvqs"]
+
+[node name="ScoreStatBoard" type="Control"]
+custom_minimum_size = Vector2(263, 50)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 263.0
+offset_bottom = 50.0
+script = ExtResource("1_1dh4m")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 13.0
+offset_right = 42.0
+offset_bottom = 36.0
+text = "Label"
+
+[node name="VBoxContainerStatBar" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 0
+offset_left = 80.0
+offset_right = 160.0
+offset_bottom = 50.0
+theme_override_constants/separation = 17
+alignment = 1
+
+[node name="StatBarHome" parent="VBoxContainerStatBar" instance=ExtResource("2_8gyas")]
+layout_mode = 2
+texture = ExtResource("3_r34di")
+
+[node name="StatBarAway" parent="VBoxContainerStatBar" instance=ExtResource("2_8gyas")]
+layout_mode = 2
+texture = ExtResource("4_axvqs")
+
+[node name="GridContainerStatNumber" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 180.0
+offset_right = 263.0
+offset_bottom = 50.0
+columns = 2
+
+[node name="LabelHomeNumber" type="Label" parent="GridContainerStatNumber"]
+custom_minimum_size = Vector2(46, 0)
+layout_mode = 2
+text = "xxxxx"
+
+[node name="LabelHomePercentage" type="Label" parent="GridContainerStatNumber"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "xx%"
+
+[node name="LabelAwayNumber" type="Label" parent="GridContainerStatNumber"]
+custom_minimum_size = Vector2(46, 0)
+layout_mode = 2
+text = "xxxxx"
+
+[node name="LabelAwayPercentage" type="Label" parent="GridContainerStatNumber"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "xx%"

@@ -13,6 +13,7 @@ script = ExtResource("1_glwg5")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(8, 10)
+layout_mode = 0
 offset_right = 8.0
 offset_bottom = 10.0
 texture = ExtResource("2_gra22")

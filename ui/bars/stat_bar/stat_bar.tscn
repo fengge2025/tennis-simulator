@@ -1,13 +1,84 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpbhc3fmxqkoj"]
+[gd_scene load_steps=3 format=3 uid="uid://cpbhc3fmxqkoj"]
 
-[ext_resource type="Script" path="res://ui/bars/stat_bar/scripts/stat_bar.gd" id="1_tctjn"]
+[ext_resource type="Script" path="res://ui/bars/stat_bar/stat_bar.gd" id="1_tctjn"]
+[ext_resource type="PackedScene" uid="uid://buli0h2jmjsf4" path="res://ui/bars/stat_bar/bar_cell/bar_cell.tscn" id="2_p53s7"]
 
 [node name="StatBar" type="Control"]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_tctjn")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_right = 48.0
-offset_bottom = 10.0
+layout_mode = 0
 theme_override_constants/separation = 0
+
+[node name="BarCell" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+layout_mode = 2
+
+[node name="BarCell2" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+layout_mode = 2
+
+[node name="BarCell3" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+layout_mode = 2
+
+[node name="BarCell4" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+layout_mode = 2
+
+[node name="BarCell5" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+layout_mode = 2
+
+[node name="BarCell6" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+layout_mode = 2
+
+[node name="BarCell7" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+layout_mode = 2
+
+[node name="BarCell8" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+layout_mode = 2
+
+[node name="BarCell9" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+layout_mode = 2
+
+[node name="BarCell10" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+layout_mode = 2
+
+[node name="BarCell11" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+visible = false
+layout_mode = 2
+
+[node name="BarCell12" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+visible = false
+layout_mode = 2
+
+[node name="BarCell13" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+visible = false
+layout_mode = 2
+
+[node name="BarCell14" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+visible = false
+layout_mode = 2
+
+[node name="BarCell15" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+visible = false
+layout_mode = 2
+
+[node name="BarCell16" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+visible = false
+layout_mode = 2
+
+[node name="BarCell17" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+visible = false
+layout_mode = 2
+
+[node name="BarCell18" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+visible = false
+layout_mode = 2
+
+[node name="BarCell19" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+visible = false
+layout_mode = 2
+
+[node name="BarCell20" parent="HBoxContainer" instance=ExtResource("2_p53s7")]
+visible = false
+layout_mode = 2

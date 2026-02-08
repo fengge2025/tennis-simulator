@@ -12,16 +12,22 @@ var stat: SimManagerStat
 var sim_point: SimPoint
 var score_home_or_away: Player.HomeOrAway
 
-@onready var timer: Timer = $Timer
-@onready var sim_score_board: SimScoreBoard = $SimScoreBoard
+# 500 match
+# 1500 set
+# 5000 game
+# 15000 point
+@export var sim_match_iter: int
+
+@onready var sim_score_board: SimScoreBoard = $PanelContainer/SimScoreBoard
 
 func initialize() -> void:
 	score = Score.new()
 	stat = SimManagerStat.new()
 	sim_point = SimPoint.new()
+	sim_score_board.match_iter = sim_match_iter
 
 func start_sim() -> void:
-	for i in range(30):
+	for i in range(sim_match_iter):
 		start_new_match()
 		await get_tree().create_timer(0.01).timeout
 
@@ -36,6 +42,7 @@ func start_new_game() -> bool:
 	while !end_game:
 		end_game = start_new_point()
 	stat.update_game(score_home_or_away)
+	#sim_score_board.update_stat(stat)
 	return score.update_game(score_home_or_away)
 
 func start_new_set() -> bool:
