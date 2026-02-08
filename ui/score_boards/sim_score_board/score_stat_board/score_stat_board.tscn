@@ -6,60 +6,58 @@
 [ext_resource type="Texture2D" uid="uid://bxgcepj8gnf8m" path="res://ui/bars/stat_bar/assets/bar_yellow_v1.png" id="4_axvqs"]
 
 [node name="ScoreStatBoard" type="Control"]
-custom_minimum_size = Vector2(263, 50)
+custom_minimum_size = Vector2(300, 50)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 263.0
+offset_right = 300.0
 offset_bottom = 50.0
 script = ExtResource("1_1dh4m")
 
-[node name="Label" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 50)
 layout_mode = 0
-offset_top = 13.0
-offset_right = 42.0
-offset_bottom = 36.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 23)
+layout_mode = 2
 text = "Label"
 
-[node name="VBoxContainerStatBar" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(80, 50)
-layout_mode = 0
-offset_left = 80.0
-offset_right = 160.0
-offset_bottom = 50.0
+[node name="VBoxContainerStatBar" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(160, 50)
+layout_mode = 2
 theme_override_constants/separation = 17
 alignment = 1
 
-[node name="StatBarHome" parent="VBoxContainerStatBar" instance=ExtResource("2_8gyas")]
+[node name="StatBarHome" parent="HBoxContainer/VBoxContainerStatBar" instance=ExtResource("2_8gyas")]
 layout_mode = 2
 texture = ExtResource("3_r34di")
 
-[node name="StatBarAway" parent="VBoxContainerStatBar" instance=ExtResource("2_8gyas")]
+[node name="StatBarAway" parent="HBoxContainer/VBoxContainerStatBar" instance=ExtResource("2_8gyas")]
 layout_mode = 2
 texture = ExtResource("4_axvqs")
 
-[node name="GridContainerStatNumber" type="GridContainer" parent="."]
-layout_mode = 0
-offset_left = 180.0
-offset_right = 263.0
-offset_bottom = 50.0
+[node name="GridContainerStatNumber" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
 columns = 2
 
-[node name="LabelHomeNumber" type="Label" parent="GridContainerStatNumber"]
+[node name="LabelHomeNumber" type="Label" parent="HBoxContainer/GridContainerStatNumber"]
 custom_minimum_size = Vector2(46, 0)
 layout_mode = 2
 text = "xxxxx"
 
-[node name="LabelHomePercentage" type="Label" parent="GridContainerStatNumber"]
+[node name="LabelHomePercentage" type="Label" parent="HBoxContainer/GridContainerStatNumber"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 text = "xx%"
 
-[node name="LabelAwayNumber" type="Label" parent="GridContainerStatNumber"]
+[node name="LabelAwayNumber" type="Label" parent="HBoxContainer/GridContainerStatNumber"]
 custom_minimum_size = Vector2(46, 0)
 layout_mode = 2
 text = "xxxxx"
 
-[node name="LabelAwayPercentage" type="Label" parent="GridContainerStatNumber"]
+[node name="LabelAwayPercentage" type="Label" parent="HBoxContainer/GridContainerStatNumber"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 text = "xx%"

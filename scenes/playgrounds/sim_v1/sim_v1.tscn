@@ -16,4 +16,4 @@ centered = false
 sim_match_iter = 1000
 
 [node name="ExitButton" parent="." instance=ExtResource("3_37x2c")]
-position = Vector2(233, 187)
+position = Vector2(273, 526)

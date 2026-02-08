@@ -20,7 +20,9 @@ var score_home_or_away: Player.HomeOrAway
 func initialize() -> void:
 	score = Score.new()
 	stat = SimManagerStat.new()
-	sim_point = SimPoint.new()
+	var player_stat_home: PlayerStat = PlayerStat.new_player(14, 20, 20)
+	var player_stat_away: PlayerStat = PlayerStat.new_player(10, 20, 20)
+	sim_point = SimPoint.new_sim_point(player_stat_home, player_stat_away)
 	sim_score_board.match_iter = sim_match_iter
 
 
@@ -31,7 +33,7 @@ func start_sim() -> void:
 
 
 func start_new_point() -> bool:
-	var outcome: SimPoint.SimPointOutcome = sim_point.start_rng_point_action()
+	var outcome: SimPoint.SimPointOutcome = sim_point.start_new_point_action()
 	score_home_or_away = outcome.score_home_or_away
 	stat.update_point(score_home_or_away)
 	return score.update_point(score_home_or_away)

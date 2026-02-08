@@ -1,11 +1,19 @@
 class_name PlayerStat extends Object
 
-var hit_point: int = 0
-var run_point: int = 0
-var serve_point: int = 0
+const max_point: float = 20.0
 
+var hit: int = 0
+var run: int = 0
+var serve: int = 0
 
-func _init(_hit_point: int, _run_point: int, _serve_point: int) -> void:
-	hit_point = _hit_point
-	run_point = _run_point
-	serve_point = _serve_point
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
+static func new_player(_hit: int, _run: int, _serve: int) -> PlayerStat:
+	var player_stat: PlayerStat = PlayerStat.new()
+	player_stat.hit = _hit
+	player_stat.run = _run
+	player_stat.serve = _serve
+	return player_stat
+
+func hit_result() -> bool:
+	return rng.randf() < hit / max_point
