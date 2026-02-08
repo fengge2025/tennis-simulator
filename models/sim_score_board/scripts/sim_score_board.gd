@@ -9,6 +9,8 @@ class_name SimScoreBoard extends Node2D
 @onready var label_match_home: Label = $GridContainer/LabelMatchHome
 @onready var label_match_away: Label = $GridContainer/LabelMatchAway
 
+@onready var stat_bar: StatBar = $StatBar
+
 func update_stat(score: SimManager.SimManagerStat) -> void:
 	label_point_home.text = str(score.point_home)
 	label_point_away.text = str(score.point_away)
@@ -18,3 +20,5 @@ func update_stat(score: SimManager.SimManagerStat) -> void:
 	label_set_away.text = str(score.set_away)
 	label_match_home.text = str(score.match_home)
 	label_match_away.text = str(score.match_away)
+	
+	stat_bar.update_stat(30)

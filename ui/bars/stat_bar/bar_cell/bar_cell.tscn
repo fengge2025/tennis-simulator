@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://buli0h2jmjsf4"]
+
+[ext_resource type="Script" path="res://ui/bars/stat_bar/bar_cell/scripts/bar_cell.gd" id="1_glwg5"]
+[ext_resource type="Texture2D" uid="uid://bxgcepj8gnf8m" path="res://ui/bars/stat_bar/assets/bar_yellow_v1.png" id="2_gra22"]
+
+[node name="BarCell" type="Control"]
+custom_minimum_size = Vector2(8, 10)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 8.0
+offset_bottom = 10.0
+script = ExtResource("1_glwg5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(8, 10)
+offset_right = 8.0
+offset_bottom = 10.0
+texture = ExtResource("2_gra22")
+stretch_mode = 2

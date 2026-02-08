@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0fnrkne5c8xp"]
+[gd_scene load_steps=4 format=3 uid="uid://d0fnrkne5c8xp"]
 
 [ext_resource type="Script" path="res://models/sim_score_board/scripts/sim_score_board.gd" id="1_d6yfj"]
+[ext_resource type="PackedScene" uid="uid://cpbhc3fmxqkoj" path="res://ui/bars/stat_bar/stat_bar.tscn" id="2_yab04"]
+[ext_resource type="Texture2D" uid="uid://c5lo0bs41dftt" path="res://ui/bars/stat_bar/assets/bar_blue_v1.png" id="3_4obv7"]
 
 [node name="SimScoreBoard" type="Node2D"]
 script = ExtResource("1_d6yfj")
@@ -69,3 +71,6 @@ text = "home"
 [node name="LabelMatchAway" type="Label" parent="GridContainer"]
 layout_mode = 2
 text = "away"
+
+[node name="StatBar" parent="." instance=ExtResource("2_yab04")]
+texture = ExtResource("3_4obv7")

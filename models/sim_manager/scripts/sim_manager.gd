@@ -21,7 +21,7 @@ func initialize() -> void:
 	sim_point = SimPoint.new()
 
 func start_sim() -> void:
-	for i in range(1000):
+	for i in range(30):
 		start_new_match()
 		await get_tree().create_timer(0.01).timeout
 
@@ -29,7 +29,6 @@ func start_new_point() -> bool:
 	var outcome: SimPoint.SimPointOutcome = sim_point.start_rng_point_action()
 	score_home_or_away = outcome.score_home_or_away
 	stat.update_point(score_home_or_away)
-	sim_score_board.update_stat(stat)
 	return score.update_point(score_home_or_away)
 
 func start_new_game() -> bool:
@@ -37,7 +36,6 @@ func start_new_game() -> bool:
 	while !end_game:
 		end_game = start_new_point()
 	stat.update_game(score_home_or_away)
-	sim_score_board.update_stat(stat)
 	return score.update_game(score_home_or_away)
 
 func start_new_set() -> bool:
@@ -45,7 +43,7 @@ func start_new_set() -> bool:
 	while !end_set:
 		end_set = start_new_game()
 	stat.update_set(score_home_or_away)
-	sim_score_board.update_stat(stat)
+	#sim_score_board.update_stat(stat)
 	return score.update_set(score_home_or_away)
 
 func start_new_match() -> void:

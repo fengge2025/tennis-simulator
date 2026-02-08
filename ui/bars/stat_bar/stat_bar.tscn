@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpbhc3fmxqkoj"]
+
+[ext_resource type="Script" path="res://ui/bars/stat_bar/scripts/stat_bar.gd" id="1_tctjn"]
+
+[node name="StatBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_tctjn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 48.0
+offset_bottom = 10.0
+theme_override_constants/separation = 0
