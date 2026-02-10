@@ -19,8 +19,9 @@ var receive_player_stat: PlayerStat:
 var hit_home_or_away: Player.HomeOrAway:
 	get:
 		if receive_turn == 0:
-			return Player.HomeOrAway.HOME
-		return Player.HomeOrAway.AWAY
+			return Player.HomeOrAway.AWAY
+		return Player.HomeOrAway.HOME
+
 
 static func new_sim_point(_player_stat_home: PlayerStat, _player_stat_away: PlayerStat) -> SimPoint:
 	var sim_point: SimPoint = SimPoint.new()
@@ -28,12 +29,12 @@ static func new_sim_point(_player_stat_home: PlayerStat, _player_stat_away: Play
 	sim_point.player_stat_away = _player_stat_away
 	return sim_point
 
+
 func start_new_point_action() -> SimPointOutcome:
 	var score_home_or_away: Player.HomeOrAway = _start_point()
-	var outcome: SimPointOutcome = SimPointOutcome.new_outcome(
-		score_home_or_away
-	)
+	var outcome: SimPointOutcome = SimPointOutcome.new_outcome(score_home_or_away)
 	return outcome
+
 
 func _start_point() -> Player.HomeOrAway:
 	var end_point: bool = false
@@ -42,8 +43,10 @@ func _start_point() -> Player.HomeOrAway:
 		_swap_players()
 	return hit_home_or_away
 
+
 func _swap_players() -> void:
 	receive_turn ^= 1
+
 
 class SimPointOutcome:
 	var score_home_or_away: Player.HomeOrAway

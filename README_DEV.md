@@ -59,11 +59,8 @@ https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_bas
 ## naming conventions
 https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html#naming-conventions
 
-## names
-- file point_state
-- class PointState
-- enum ACTION
-- var point_state
+## naming conventions
+https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html#naming-conventions
 
 ###
 - _on_ball_state_finished

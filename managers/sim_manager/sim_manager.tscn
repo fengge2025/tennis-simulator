@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cb5yscur3lwqc"]
 
-[ext_resource type="Script" path="res://models/sim_manager/scripts/sim_manager.gd" id="1_ljc05"]
+[ext_resource type="Script" path="res://managers/sim_manager/sim_manager.gd" id="1_y0ib4"]
 [ext_resource type="PackedScene" uid="uid://bgfj5snd88edn" path="res://ui/score_boards/sim_score_board/sim_score_board.tscn" id="2_ddg30"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21xso"]
@@ -23,7 +23,7 @@ expand_margin_right = 20.0
 expand_margin_bottom = 20.0
 
 [node name="SimManager" type="Node2D"]
-script = ExtResource("1_ljc05")
+script = ExtResource("1_y0ib4")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 offset_left = 50.0

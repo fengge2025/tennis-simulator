@@ -1,12 +1,13 @@
 class_name PlayerStat extends Object
 
-const max_point: float = 20.0
+const MAX_POINT: float = 20.0
 
 var hit: int = 0
 var run: int = 0
 var serve: int = 0
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
 
 static func new_player(_hit: int, _run: int, _serve: int) -> PlayerStat:
 	var player_stat: PlayerStat = PlayerStat.new()
@@ -15,5 +16,6 @@ static func new_player(_hit: int, _run: int, _serve: int) -> PlayerStat:
 	player_stat.serve = _serve
 	return player_stat
 
+
 func hit_result() -> bool:
-	return rng.randf() < hit / max_point
+	return rng.randf() < hit / MAX_POINT

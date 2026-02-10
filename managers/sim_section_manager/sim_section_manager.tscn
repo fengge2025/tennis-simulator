@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dht3opmscot26"]
+
+[ext_resource type="Script" path="res://managers/sim_section_manager/sim_section_manager.gd" id="1_eklne"]
+[ext_resource type="PackedScene" uid="uid://cacrtu2f8bujc" path="res://ui/score_boards/sim_section/sim_section.tscn" id="2_75dfl"]
+
+[node name="SimSectionManager" type="Control"]
+custom_minimum_size = Vector2(185, 50)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_eklne")
+
+[node name="SimSection" parent="." instance=ExtResource("2_75dfl")]

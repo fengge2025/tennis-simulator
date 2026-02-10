@@ -21,7 +21,7 @@ func _ready() -> void:
 	score_stat_board_match.label_text = "match"
 
 
-func update_stat(score: SimManager.SimManagerStat) -> void:
+func update_stat(score: SimManagerStat) -> void:
 	score_stat_board_point.update_stat(score.point_home, score.point_away)
 	score_stat_board_game.update_stat(score.game_home, score.game_away)
 	score_stat_board_set.update_stat(score.set_home, score.set_away)

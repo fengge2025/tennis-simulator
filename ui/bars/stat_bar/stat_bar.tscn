@@ -11,6 +11,8 @@ script = ExtResource("1_tctjn")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
+offset_right = 160.0
+offset_bottom = 10.0
 theme_override_constants/separation = 0
 
 [node name="BarCell" parent="HBoxContainer" instance=ExtResource("2_p53s7")]

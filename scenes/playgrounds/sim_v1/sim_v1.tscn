@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bpjhcvhy8etcj"]
 
-[ext_resource type="Script" path="res://scenes/playgrounds/sim_v1/sim_v1/sim_v1.gd" id="1_2bu4n"]
-[ext_resource type="PackedScene" uid="uid://cb5yscur3lwqc" path="res://models/sim_manager/sim_manager.tscn" id="2_nmff5"]
+[ext_resource type="Script" path="res://scenes/playgrounds/sim_v1/sim_v1.gd" id="1_2bu4n"]
+[ext_resource type="PackedScene" uid="uid://cb5yscur3lwqc" path="res://managers/sim_manager/sim_manager.tscn" id="2_nmff5"]
 [ext_resource type="PackedScene" uid="uid://cq11w2tnc8ies" path="res://ui/exit_button/exit_button.tscn" id="3_37x2c"]
 [ext_resource type="Texture2D" uid="uid://b8knvvnarxp3r" path="res://models/court/assets/tennis-court-0002.png" id="4_upocw"]
 

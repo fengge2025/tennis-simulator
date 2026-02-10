@@ -14,9 +14,11 @@ class_name ScoreStatBoard extends Control
 @onready var stat_bar_home: StatBar = $HBoxContainer/VBoxContainerStatBar/StatBarHome
 @onready var stat_bar_away: StatBar = $HBoxContainer/VBoxContainerStatBar/StatBarAway
 @onready var label_home_number: Label = $HBoxContainer/GridContainerStatNumber/LabelHomeNumber
-@onready var label_home_percentage: Label = $HBoxContainer/GridContainerStatNumber/LabelHomePercentage
+@onready
+var label_home_percentage: Label = $HBoxContainer/GridContainerStatNumber/LabelHomePercentage
 @onready var label_away_number: Label = $HBoxContainer/GridContainerStatNumber/LabelAwayNumber
-@onready var label_away_percentage: Label = $HBoxContainer/GridContainerStatNumber/LabelAwayPercentage
+@onready
+var label_away_percentage: Label = $HBoxContainer/GridContainerStatNumber/LabelAwayPercentage
 
 
 func update_stat(home_stat: int, away_stat: int) -> void:
